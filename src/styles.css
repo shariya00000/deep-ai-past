@@ -30,7 +30,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Project palette — editorial / data-essay */
+  /* Project palette — deep navy + teal */
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-rule: var(--rule);
@@ -54,36 +54,36 @@
 :root {
   --radius: 0.125rem;
 
-  /* Editorial palette */
-  --paper: #FAFAF7;
-  --paper-2: #F1F0EA;
-  --rule: #1A1A1A;
-  --ink: #0E0E10;
-  --ink-2: #2B2B2E;
-  --ink-mute: #6B6B70;
-  --accent: #142AF5;
-  --accent-ink: #FAFAF7;
-  --inverse: #0E0E10;
-  --inverse-fg: #FAFAF7;
+  /* Deep-navy editorial palette */
+  --paper: #0A0F1C;          /* page bg */
+  --paper-2: #111827;        /* card / panel bg */
+  --rule: #1E3A5F;           /* borders, dividers, timeline line */
+  --ink: #FFFFFF;            /* headings */
+  --ink-2: #CBD5E1;          /* body */
+  --ink-mute: #94A3B8;       /* secondary muted */
+  --accent: #06B6D4;         /* teal */
+  --accent-ink: #0A0F1C;     /* text on teal */
+  --inverse: #060A14;        /* interstitial bg */
+  --inverse-fg: #FFFFFF;
 
   /* Map shadcn semantics */
   --background: var(--paper);
-  --foreground: var(--ink);
-  --card: var(--paper);
-  --card-foreground: var(--ink);
-  --popover: var(--paper);
-  --popover-foreground: var(--ink);
+  --foreground: var(--ink-2);
+  --card: var(--paper-2);
+  --card-foreground: var(--ink-2);
+  --popover: var(--paper-2);
+  --popover-foreground: var(--ink-2);
   --primary: var(--accent);
   --primary-foreground: var(--accent-ink);
   --secondary: var(--paper-2);
-  --secondary-foreground: var(--ink);
+  --secondary-foreground: var(--ink-2);
   --muted: var(--paper-2);
   --muted-foreground: var(--ink-mute);
   --accent-foreground: var(--accent-ink);
-  --destructive: #B00020;
-  --destructive-foreground: var(--paper);
-  --border: rgba(26, 26, 26, 0.12);
-  --input: rgba(26, 26, 26, 0.18);
+  --destructive: #F43F5E;
+  --destructive-foreground: var(--ink);
+  --border: var(--rule);
+  --input: var(--rule);
   --ring: var(--accent);
 }
 
@@ -118,7 +118,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--ink);
   }
@@ -126,24 +126,22 @@
   /* Editorial body text uses serif */
   .prose-body, .prose-body p {
     font-family: var(--font-serif);
-    font-size: 1.0625rem; /* 17px */
-    line-height: 1.55;
-    color: var(--ink);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink-2);
     hyphens: auto;
   }
 
-  /* Drop cap — applied via .has-dropcap on the prose container */
   .has-dropcap > p:first-of-type::first-letter {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 600;
     float: left;
     font-size: 4.2em;
     line-height: 0.9;
     padding: 0.05em 0.12em 0 0;
-    color: var(--ink);
+    color: var(--accent);
   }
 
-  /* Inline highlight: accent underline, no background */
   mark, .mark {
     background: transparent;
     color: inherit;
@@ -153,7 +151,6 @@
     text-underline-offset: 3px;
   }
 
-  /* Footnote markers */
   .fn-ref {
     font-family: var(--font-mono);
     font-size: 0.7em;
@@ -163,7 +160,6 @@
     margin-left: 0.1em;
   }
 
-  /* Hairline rule helper */
   .rule-t { border-top: 1px solid var(--rule); }
   .rule-b { border-bottom: 1px solid var(--rule); }
 
