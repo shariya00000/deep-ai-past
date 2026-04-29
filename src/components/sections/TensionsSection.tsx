@@ -59,26 +59,26 @@ export function TensionsSection() {
       standfirst="Throughout history, state-private tensions have manifested in differing ways, leading to different consequences. Four files, four different failure modes."
       fullBleed
     >
-      <div className="grid grid-cols-1 border-t border-[color:var(--rule)] md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {CASES.map((c, i) => (
           <button
             key={c.title}
             type="button"
             onClick={() => setOpenIdx(i)}
-            className="group relative flex flex-col gap-5 border-b border-[color:var(--rule)] p-8 text-left transition-colors duration-100 odd:md:border-r hover:bg-[color:var(--ink)] hover:text-[color:var(--inverse-fg)] focus:outline-none focus:bg-[color:var(--ink)] focus:text-[color:var(--inverse-fg)] md:p-10"
+            className="group relative flex flex-col gap-5 border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-8 text-left transition-all duration-150 hover:-translate-y-0.5 hover:border-[color:var(--accent)] focus:outline-none focus:border-[color:var(--accent)] md:p-10"
           >
             <div className="flex items-baseline justify-between gap-4">
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                 Case 0{i + 1} · {c.dates}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)] group-hover:text-[color:var(--accent)] group-focus:text-[color:var(--accent)]">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                 open file →
               </span>
             </div>
-            <h3 className="text-2xl font-semibold leading-[1.1] tracking-[-0.02em] md:text-3xl">
+            <h3 className="text-2xl font-bold leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl">
               {c.title}
             </h3>
-            <p className="font-serif text-base italic leading-snug text-current opacity-80">
+            <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)]">
               {c.consequence}
             </p>
           </button>
