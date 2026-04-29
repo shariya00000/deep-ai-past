@@ -76,7 +76,7 @@ export function GptsTimelineSection() {
               </div>
             ))}
           </button>
-          <div className="mt-8 font-mono text-[11px] uppercase tracking-[0.2em] text-[color:var(--oxblood)] italic">
+          <div className="mt-8 text-[11px] uppercase tracking-[0.2em] text-[color:var(--oxblood)] italic font-sans">
             click to explore the timeline →
           </div>
         </div>
