@@ -75,7 +75,7 @@ export function TensionsSection() {
                 open file →
               </span>
             </div>
-            <h3 className="text-2xl font-bold leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl">
+            <h3 className="text-2xl leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl font-medium">
               {c.title}
             </h3>
             <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)]">
