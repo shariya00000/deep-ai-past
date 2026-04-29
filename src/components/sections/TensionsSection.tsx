@@ -86,7 +86,7 @@ export function TensionsSection() {
       </div>
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
-        <DialogContent className="max-w-2xl rounded-none border border-[color:var(--rule)] bg-[color:var(--paper)] p-0">
+        <DialogContent className="max-w-2xl rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
           {active && (
             <div className="p-8 md:p-10">
               <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
