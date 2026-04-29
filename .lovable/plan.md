@@ -1,74 +1,106 @@
-## Geopolitics of AI — Page Build (Sections 1–3)
+## Restyle: from "gentrified cafe" to data-essay
 
-A long-form scrollable essay site. Cream background, serif typography, dark red accents. Built as a single landing route with composed section components so we can keep extending it in later prompts.
+The current site reads as a boutique landing page (cream + Fraunces + oxblood). We're rebuilding the design system around a Pudding/Polygraph-style data essay: white paper, IBM Plex type, single electric-blue accent (#142af5), and dense editorial chrome. No code is being thrown away — only the design layer (tokens, typography, section chrome, card treatments) changes. Section structure and copy stay the same.
 
-### Design system (set up first)
+### 1. New design tokens (`src/styles.css`)
 
-Establish shared tokens so every future section stays consistent:
-
-- **Palette**: cream `#F5EFE3` background, ink `#1A1614` text, oxblood `#6B1B1B` accent, muted tan `#E5D9C3`, deep oxblood `#3A0E0E` for the interstitial.
-- **Typography**: serif display (e.g. Cormorant Garamond or Fraunces) for headings; serif body (e.g. EB Garamond) for paragraphs; mono small-caps (e.g. JetBrains Mono) for section labels like `§ 02 — THE 24 GPTS IN HISTORY`.
-- **Layout**: centered max-width ~720px reading column for prose; full-bleed wrappers for interstitials and timeline.
-- Reusable `<Section>` wrapper component with optional label, heading, and lead paragraph slots.
-
-### Section 1 — Placeholder hero
-
-A scaffolded intro so the page reads top-to-bottom:
-- Label: `§ 01 — INTRODUCTION`
-- Empty heading slot (placeholder caption: "heading coming soon")
-- A short lorem-style placeholder paragraph you'll replace later.
-
-This locks in the visual rhythm before content arrives.
-
-### Section 2 — The 24 GPTs in History
-
-- Label: `§ 02 — THE 24 GPTS IN HISTORY` in oxblood mono small-caps.
-- Blank heading slot (reserved space, no visible text).
-- Lead paragraph: the Lipsey/Carlaw/Bekar text exactly as provided.
-- **Stacked deck**: 3–4 cards visually stacked with slight rotation/offset, centered. A small italic prompt below reads "explore the timeline →". The whole stack is one click target.
-- **Reveal animation**: on click, cards slide apart horizontally from the stack into a row (eased translate + de-rotate, ~600ms with slight stagger). The container then becomes a horizontally scrollable strip with snap points and a subtle scroll hint on the right edge.
-- **8 cards**, each showing GPT name (serif) and a year badge (small oxblood pill). Cards are not clickable.
-- **Era-based gradient** across the 8 cards from cream → warm tan → deep red, so the leftmost (Domestication) is palest and the rightmost (AI) is deepest oxblood. Text color flips to cream on the darker cards for legibility.
-
-Entries (in order): Domestication of plants (c. 9000 BCE), Water wheel (1st c. BCE), Printing press (c. 1440), Steam engine (c. 1760), Electricity (c. 1870), Internal combustion engine (c. 1885), The internet (c. 1969), Artificial intelligence (c. 2020s).
-
-### Interstitial — Convergence diagram
-
-Full-width panel between sections 2 and 3, deep oxblood background with cream text. Triggered via `IntersectionObserver` when scrolled into view.
+Replace the cream/oxblood palette with a paper-white editorial system.
 
 ```text
-GPTs transform economies  ●─●──●───▶          ◀───●──●─●  States compete for security
-                                       ╲    ╱
-                                        ▼
-                          For the first time, these are
-                                the same question.
-                     AI is the first GPT whose frontier
-                            is a security asset.
+--paper:        #FAFAF7   /* page bg, very slight warm white */
+--paper-2:      #F1F0EA   /* alt panel / table stripe */
+--rule:         #1A1A1A   /* hairline rules, 1px black */
+--ink:          #0E0E10   /* body text, near-black */
+--ink-2:        #2B2B2E   /* secondary text */
+--ink-mute:     #6B6B70   /* captions, metadata */
+--accent:       #142af5   /* THE only accent — links, marks, dots, dataviz */
+--accent-ink:   #FAFAF7   /* text on accent */
+--inverse:      #0E0E10   /* dark interstitial bg */
+--inverse-fg:   #FAFAF7
 ```
 
-- Two horizontal arrow tracks animate in simultaneously from left and right edges, each with 3–4 unlabeled dot markers.
-- They meet at center; once converged, the bold serif statement fades + scales in, followed by the smaller sub-label.
-- Restrained: no decorative flourishes, just typography and thin lines.
-- Animation runs once per page load; gracefully no-ops with reduced motion.
+Drop oxblood, cream, tan tokens entirely. Map shadcn semantics: `--background: var(--paper)`, `--primary: var(--accent)`, `--border: rgba(26,26,26,0.12)`, `--ring: var(--accent)`.
 
-### Section 3 — Historical examples of state-private tensions
+### 2. Typography (`__root.tsx` + `styles.css`)
 
-- Heading (serif): "Historical examples of state-private company tensions"
-- Subheading: "Throughout history, state-private tensions have manifested in differing ways, leading to different consequences."
-- **2×2 grid of 4 minimal cards**, each with: date range (small oxblood mono), headline (serif), and the one-line consequence beneath. Hover lifts the card subtly.
-- **Click opens a modal**: dimmed cream-tinted backdrop, centered card, close button (×) top-right, ESC + backdrop-click to close, focus trap, body scroll lock.
-- Modal body uses **placeholder lorem text** for now — easy to swap when you paste the real descriptions.
+Swap Fraunces / EB Garamond / JetBrains Mono → **IBM Plex Sans (300/400/500/600), IBM Plex Serif (400/500 + italic), IBM Plex Mono (400/500)**.
 
-The 4 cards: British & Dutch East India Companies (17th–19th c.); Krupp and the German Military State (1850s–1945); Standard Oil and the U.S. Government (1870–1911); Zaibatsu and Imperial Japan (1880s–1945).
+- `--font-display: "IBM Plex Sans"` (UI, labels, headlines)
+- `--font-serif: "IBM Plex Serif"` (long-form body, pull quotes)
+- `--font-mono: "IBM Plex Mono"` (metadata, numerals, footnote markers)
 
-### Technical notes
+Type scale (compressed, editorial):
+- Section labels: Plex Mono 11px, uppercase, tracking 0.18em, accent color, prefixed with `§ 02 /`
+- Hero headline: Plex Sans 56–72px, weight 600, tracking -0.02em, line-height 1.0
+- Section heading: Plex Sans 36–44px, weight 500
+- Body: Plex Serif 17/1.55, justified on desktop, hyphens auto
+- Captions / margin notes: Plex Sans 12/1.4, --ink-mute
+- Numerals everywhere: `font-feature-settings: "tnum", "lnum"` for tabular numbers
 
-- Single route `src/routes/index.tsx` composing section components from `src/components/sections/`.
-- New components: `Section.tsx`, `IntroSection.tsx`, `GptsTimelineSection.tsx` (with `DeckStack` + `TimelineStrip`), `ConvergenceInterstitial.tsx`, `TensionsSection.tsx` (with `CaseCard`), reusing shadcn `Dialog` for the modal.
-- Animations: CSS transitions + Tailwind keyframes; `IntersectionObserver` for the interstitial trigger; `prefers-reduced-motion` respected throughout.
-- Fonts loaded via Google Fonts `<link>` in `__root.tsx` head; CSS tokens added to `src/styles.css` (cream bg, oxblood, era gradient stops).
-- Update `__root.tsx` meta: title "Geopolitics of AI", relevant description.
+Drop caps: first paragraph of each section gets a Plex Serif 4-line drop cap.
 
-### Out of scope (next prompts)
+### 3. Layout grid — denser, multi-column
 
-Real copy for section 1, real modal body text for section 3, sections 4+, navigation chrome, and any data/backend.
+Replace the single 720px column with a 12-column editorial grid (max-width 1200px, 24px gutter):
+
+- Body prose: 7 cols (~640px)
+- Marginalia (left or right): 3 cols for source notes, definitions, asides — Plex Sans 12px, --ink-mute, hairline rule above
+- Full-bleed: timeline strip, interstitial, and any future charts span all 12
+
+Update `Section.tsx` to support a `marginalia` slot rendered alongside body prose on `md+`, stacked below on mobile.
+
+### 4. Editorial chrome
+
+Add throughout:
+- **Hairline rules**: 1px solid --rule between sections (no padding-only separators)
+- **Section header block**: label · section number · hairline rule · headline · standfirst (italic Plex Serif, --ink-2)
+- **Byline strip** under hero: "An essay · 2026 · ~18 min read · 4 sections" in Plex Mono
+- **Numbered footnotes**: superscript accent-colored numbers in body, rendered at section end as a `<ol>` with Plex Mono numerals
+- **Pull quotes**: full-width, Plex Serif 28px italic, accent vertical bar on the left
+- **Inline highlight**: `<mark>` style → no background, accent underline 2px offset
+
+### 5. Section-by-section restyle
+
+**Header (`index.tsx`)**: Replace centered chrome with a left-aligned masthead — wordmark in Plex Sans 600, then a hairline rule, then a Plex Mono meta row (date · section count · estimated reading time). Sticky on scroll, condenses to thin bar.
+
+**Section 1 — Intro**: Add a real hero. Headline placeholder ("heading coming soon") becomes a large Plex Sans display headline slot with standfirst, byline, and a "scroll" indicator. Drop cap on first paragraph. Marginalia slot reserved.
+
+**Section 2 — Timeline**:
+- Stacked-deck card → replaced with a **horizontal timeline by default** (no click required). Density wins over interaction.
+- Render the 8 GPTs as a single horizontal scrolling track with: Plex Mono year on top, hairline tick mark on a continuous timeline axis, GPT name in Plex Sans below, accent dot at the AI entry to mark "you are here".
+- Era gradient is removed — all entries equal weight; only the AI entry is marked in --accent. Feels like a timeline in a working paper, not a deck of art cards.
+
+**Interstitial — Convergence**:
+- Background flips from oxblood to `--inverse` (#0E0E10), text in --inverse-fg.
+- Two tracks become labeled data lines (Plex Mono labels above each), thicker rules, dots become accent squares. Convergence point is an accent crosshair, not a dot.
+- Headline below in Plex Sans 500 (not serif), tighter and more declarative.
+
+**Section 3 — Tensions**:
+- 2×2 grid kept, but cards are restyled as **filing-cabinet entries**: hairline border (no shadow), Plex Mono date range top-left, Plex Sans 600 title, Plex Serif consequence, accent "→ open file" affordance bottom-right. Hover: invert (black bg, white text, accent underline) instead of lift-and-shadow.
+- Modal restyled: white paper, hairline border, Plex Mono breadcrumb (`§ 03 / case 02 / Krupp`), Plex Sans title, Plex Serif body with drop cap, footnotes block at bottom.
+
+**Footer**: Hairline rule, Plex Mono colophon (set in IBM Plex · built with TanStack · 2026), section index.
+
+### 6. Motion
+
+Strip the cream-era "lift and glow" hover/shadow vocabulary. Replace with:
+- Link/card hover: instant accent underline or full-card invert (no transitions over 120ms)
+- Interstitial: keep IntersectionObserver but reduce travel to 24px and remove easing flourishes
+- All shadows removed sitewide — depth comes from rules and inversion, not blur
+
+Respect `prefers-reduced-motion` (already in place).
+
+### Files touched
+
+- `src/styles.css` — tokens, base styles, drop cap, mark, footnote styles
+- `src/routes/__root.tsx` — Google Fonts link → IBM Plex family, meta unchanged
+- `src/components/sections/Section.tsx` — new header block, marginalia slot, hairline rule
+- `src/routes/index.tsx` — new masthead and footer
+- `src/components/sections/IntroSection.tsx` — hero shape with standfirst/byline placeholders
+- `src/components/sections/GptsTimelineSection.tsx` — replace deck with horizontal timeline axis
+- `src/components/sections/ConvergenceInterstitial.tsx` — black bg, accent crosshair, sans headline
+- `src/components/sections/TensionsSection.tsx` — filing-cabinet card + restyled modal
+
+### Out of scope
+
+Real copy, footnote content, charts/data viz components, navigation between routes, and sections 4+. Those land in later prompts on top of this new design system.
