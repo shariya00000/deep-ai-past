@@ -54,53 +54,58 @@ export function TensionsSection() {
 
   return (
     <Section
-      heading="Historical examples of state-private company tensions"
-      lead="Throughout history, state-private tensions have manifested in differing ways, leading to different consequences."
-      containerClassName="max-w-[960px]"
+      label="§ 03 / Historical precedents"
+      heading="State and private power: four case files."
+      standfirst="Throughout history, state-private tensions have manifested in differing ways, leading to different consequences. Four files, four different failure modes."
+      fullBleed
     >
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 border-t border-[color:var(--rule)] md:grid-cols-2">
         {CASES.map((c, i) => (
           <button
             key={c.title}
             type="button"
             onClick={() => setOpenIdx(i)}
-            className="group flex flex-col gap-4 rounded-md border border-[color:var(--border)] bg-card p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--oxblood)]/50 hover:shadow-[0_10px_30px_-12px_rgba(60,20,15,0.25)] focus:outline-none focus:ring-2 focus:ring-[color:var(--oxblood)]/40"
+            className="group relative flex flex-col gap-5 border-b border-[color:var(--rule)] p-8 text-left transition-colors duration-100 odd:md:border-r hover:bg-[color:var(--ink)] hover:text-[color:var(--inverse-fg)] focus:outline-none focus:bg-[color:var(--ink)] focus:text-[color:var(--inverse-fg)] md:p-10"
           >
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--oxblood)]">
-              {c.dates}
+            <div className="flex items-baseline justify-between gap-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
+                Case 0{i + 1} · {c.dates}
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)] group-hover:text-[color:var(--accent)] group-focus:text-[color:var(--accent)]">
+                open file →
+              </span>
             </div>
-            <h3 className="font-display text-2xl leading-tight text-[color:var(--ink)]">
+            <h3 className="text-2xl font-semibold leading-[1.1] tracking-[-0.02em] md:text-3xl">
               {c.title}
             </h3>
-            <p className="text-sm leading-relaxed text-[color:var(--ink)]/70">
+            <p className="font-serif text-base italic leading-snug text-current opacity-80">
               {c.consequence}
             </p>
-            <span className="mt-auto pt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink)]/40 transition-colors group-hover:text-[color:var(--oxblood)]">
-              read more →
-            </span>
           </button>
         ))}
       </div>
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
-        <DialogContent className="max-w-2xl border-[color:var(--border)] bg-[color:var(--cream)]">
+        <DialogContent className="max-w-2xl rounded-none border border-[color:var(--rule)] bg-[color:var(--paper)] p-0">
           {active && (
-            <>
-              <DialogHeader>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--oxblood)]">
-                  {active.dates}
-                </div>
-                <DialogTitle className="font-display text-3xl leading-tight text-[color:var(--ink)]">
+            <div className="p-8 md:p-10">
+              <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
+                <span>§ 03 / Case 0{(openIdx ?? 0) + 1}</span>
+                <span className="h-px flex-1 bg-[color:var(--rule)] opacity-40" />
+                <span className="text-[color:var(--ink-mute)]">{active.dates}</span>
+              </div>
+              <DialogHeader className="space-y-3 text-left">
+                <DialogTitle className="text-3xl font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)]">
                   {active.title}
                 </DialogTitle>
-                <DialogDescription className="text-base italic text-[color:var(--ink)]/70">
+                <DialogDescription className="font-serif text-base italic leading-snug text-[color:var(--ink-2)]">
                   {active.consequence}
                 </DialogDescription>
               </DialogHeader>
-              <div className="mt-2 text-base leading-relaxed text-[color:var(--ink)]/85">
-                {active.body}
+              <div className="has-dropcap mt-6">
+                <p className="prose-body">{active.body}</p>
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>

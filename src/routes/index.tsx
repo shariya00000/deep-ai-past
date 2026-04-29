@@ -11,23 +11,49 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <header className="px-6 pt-10">
-        <div className="mx-auto flex max-w-[1100px] items-center justify-between font-mono text-[11px] uppercase tracking-[0.25em] text-[color:var(--oxblood)]">
-          <span>Geopolitics of AI</span>
-          <span className="text-[color:var(--ink)]/50">an essay · 2026</span>
+      {/* Masthead */}
+      <header className="sticky top-0 z-30 border-b border-[color:var(--rule)] bg-[color:var(--paper)]/95 px-6 py-3 backdrop-blur supports-[backdrop-filter]:bg-[color:var(--paper)]/80">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4">
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-sm font-semibold tracking-[-0.01em] text-[color:var(--ink)]">
+              Geopolitics of AI
+            </span>
+            <span className="hidden h-3 w-px bg-[color:var(--rule)] md:inline-block" />
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)] md:inline">
+              An essay
+            </span>
+          </div>
+          <nav className="flex items-center gap-5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
+            <a href="#section-02" className="hover:text-[color:var(--accent)]">§ 02</a>
+            <a href="#section-03" className="hover:text-[color:var(--accent)]">§ 03</a>
+            <span className="hidden text-[color:var(--ink)] md:inline">2026</span>
+          </nav>
         </div>
       </header>
 
-      <h1 className="sr-only">Geopolitics of AI</h1>
-
       <IntroSection />
-      <GptsTimelineSection />
+      <div id="section-02"><GptsTimelineSection /></div>
       <ConvergenceInterstitial />
-      <TensionsSection />
+      <div id="section-03"><TensionsSection /></div>
 
-      <footer className="px-6 py-16">
-        <div className="mx-auto max-w-[1100px] border-t border-[color:var(--border)] pt-8 font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--ink)]/40">
-          More sections coming soon
+      {/* Colophon footer */}
+      <footer className="border-t border-[color:var(--rule)] px-6 py-12">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-12 gap-6 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
+          <div className="col-span-12 md:col-span-4">
+            <div className="mb-2 text-[color:var(--ink)]">Colophon</div>
+            Set in IBM Plex Sans, Serif &amp; Mono. Built with TanStack Start.
+          </div>
+          <div className="col-span-6 md:col-span-4">
+            <div className="mb-2 text-[color:var(--ink)]">Sections</div>
+            01 · Introduction<br />
+            02 · The 24 GPTs in History<br />
+            03 · Historical precedents<br />
+            More to come
+          </div>
+          <div className="col-span-6 md:col-span-4">
+            <div className="mb-2 text-[color:var(--ink)]">Status</div>
+            Working draft · 2026
+          </div>
         </div>
       </footer>
     </main>

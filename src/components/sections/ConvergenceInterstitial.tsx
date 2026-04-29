@@ -26,47 +26,56 @@ export function ConvergenceInterstitial() {
       ref={ref}
       className="w-full px-6 py-28 md:py-40"
       style={{
-        backgroundColor: "var(--oxblood-deep)",
-        color: "var(--cream)",
+        backgroundColor: "var(--inverse)",
+        color: "var(--inverse-fg)",
       }}
     >
-      <div className="mx-auto max-w-[1100px]">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="mb-12 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
+          <span>Interstitial / Convergence</span>
+          <span className="h-px flex-1 bg-[color:var(--inverse-fg)] opacity-20" />
+        </div>
+
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-6 md:gap-12">
           {/* Left track */}
           <div
             className="flex flex-col items-end gap-3"
             style={{
               opacity: active ? 1 : 0,
-              transform: active ? "translateX(0)" : "translateX(-60px)",
-              transition: "opacity 900ms ease-out, transform 900ms cubic-bezier(0.22,1,0.36,1)",
+              transform: active ? "translateX(0)" : "translateX(-24px)",
+              transition: "opacity 500ms ease-out, transform 500ms ease-out",
             }}
           >
-            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--cream)]/70">
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--inverse-fg)]/70">
               GPTs transform economies
             </div>
             <Track direction="right" />
           </div>
 
-          {/* Center */}
+          {/* Center crosshair */}
           <div
-            className="h-3 w-3 rounded-full bg-[color:var(--cream)]"
+            className="relative h-6 w-6"
             style={{
               opacity: active ? 1 : 0,
-              transform: active ? "scale(1)" : "scale(0.4)",
-              transition: "all 700ms 700ms cubic-bezier(0.22,1,0.36,1)",
+              transform: active ? "scale(1)" : "scale(0.5)",
+              transition: "all 400ms 500ms ease-out",
             }}
-          />
+          >
+            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[color:var(--accent)]" />
+            <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-[color:var(--accent)]" />
+            <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-[color:var(--accent)]" />
+          </div>
 
           {/* Right track */}
           <div
             className="flex flex-col items-start gap-3"
             style={{
               opacity: active ? 1 : 0,
-              transform: active ? "translateX(0)" : "translateX(60px)",
-              transition: "opacity 900ms ease-out, transform 900ms cubic-bezier(0.22,1,0.36,1)",
+              transform: active ? "translateX(0)" : "translateX(24px)",
+              transition: "opacity 500ms ease-out, transform 500ms ease-out",
             }}
           >
-            <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--cream)]/70">
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--inverse-fg)]/70">
               States compete for security
             </div>
             <Track direction="left" />
@@ -74,24 +83,26 @@ export function ConvergenceInterstitial() {
         </div>
 
         <div
-          className="mx-auto mt-16 max-w-[720px] text-center"
+          className="mx-auto mt-20 max-w-[860px]"
           style={{
             opacity: active ? 1 : 0,
-            transform: active ? "translateY(0)" : "translateY(16px)",
-            transition: "opacity 800ms 1100ms ease-out, transform 800ms 1100ms ease-out",
+            transform: active ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 500ms 800ms ease-out, transform 500ms 800ms ease-out",
           }}
         >
-          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+          <h2 className="text-3xl font-medium leading-[1.05] tracking-[-0.02em] md:text-5xl lg:text-6xl">
             For the first time, these are the same question.
           </h2>
           <p
-            className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-[color:var(--cream)]/60"
+            className="mt-6 max-w-[640px] font-serif text-lg italic leading-snug text-[color:var(--inverse-fg)]/70 md:text-xl"
             style={{
               opacity: active ? 1 : 0,
-              transition: "opacity 800ms 1600ms ease-out",
+              transition: "opacity 500ms 1100ms ease-out",
             }}
           >
-            AI is the first GPT whose frontier is a security asset.
+            AI is the first general purpose technology whose frontier is also
+            a security asset. Industrial policy and grand strategy collapse
+            into a single decision.
           </p>
         </div>
       </div>
@@ -103,15 +114,15 @@ function Track({ direction }: { direction: "left" | "right" }) {
   const dots = [0, 1, 2, 3];
   return (
     <div
-      className="relative flex w-full max-w-[420px] items-center"
+      className="relative flex w-full max-w-[460px] items-center"
       style={{ flexDirection: direction === "right" ? "row" : "row-reverse" }}
     >
-      <div className="h-px flex-1 bg-[color:var(--cream)]/40" />
+      <div className="h-px flex-1 bg-[color:var(--inverse-fg)]/40" />
       <div className="absolute inset-0 flex items-center justify-between px-2">
         {dots.map((d) => (
           <span
             key={d}
-            className="h-1.5 w-1.5 rounded-full bg-[color:var(--cream)]/70"
+            className="h-1.5 w-1.5 bg-[color:var(--inverse-fg)]/70"
           />
         ))}
       </div>
@@ -119,7 +130,7 @@ function Track({ direction }: { direction: "left" | "right" }) {
         className="h-0 w-0 border-y-[6px] border-y-transparent"
         style={{
           [direction === "right" ? "borderLeft" : "borderRight"]:
-            "8px solid var(--cream)",
+            "8px solid var(--accent)",
         }}
       />
     </div>
