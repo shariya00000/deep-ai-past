@@ -30,70 +30,77 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-cream: var(--cream);
-  --color-cream-deep: var(--cream-deep);
+  /* Project palette — editorial / data-essay */
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-rule: var(--rule);
   --color-ink: var(--ink);
-  --color-oxblood: var(--oxblood);
-  --color-oxblood-deep: var(--oxblood-deep);
-  --color-tan: var(--tan);
+  --color-ink-2: var(--ink-2);
+  --color-ink-mute: var(--ink-mute);
+  --color-inverse: var(--inverse);
+  --color-inverse-fg: var(--inverse-fg);
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-serif: "EB Garamond", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "IBM Plex Sans", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --animate-fade-in: fade-in 0.6s ease-out forwards;
-  --animate-slide-in-left: slide-in-left 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-slide-in-right: slide-in-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-pop-in: pop-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-slide-in-left: slide-in-left 0.5s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 0.5s ease-out forwards;
+  --animate-pop-in: pop-in 0.35s ease-out forwards;
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.125rem;
 
-  /* Project palette */
-  --cream: oklch(0.962 0.022 80);
-  --cream-deep: oklch(0.93 0.03 75);
-  --tan: oklch(0.86 0.05 65);
-  --ink: oklch(0.18 0.01 40);
-  --oxblood: oklch(0.38 0.13 25);
-  --oxblood-deep: oklch(0.22 0.09 25);
+  /* Editorial palette */
+  --paper: #FAFAF7;
+  --paper-2: #F1F0EA;
+  --rule: #1A1A1A;
+  --ink: #0E0E10;
+  --ink-2: #2B2B2E;
+  --ink-mute: #6B6B70;
+  --accent: #142AF5;
+  --accent-ink: #FAFAF7;
+  --inverse: #0E0E10;
+  --inverse-fg: #FAFAF7;
 
-  /* Map shadcn semantics onto palette */
-  --background: var(--cream);
+  /* Map shadcn semantics */
+  --background: var(--paper);
   --foreground: var(--ink);
-  --card: oklch(0.98 0.012 80);
+  --card: var(--paper);
   --card-foreground: var(--ink);
-  --popover: var(--cream);
+  --popover: var(--paper);
   --popover-foreground: var(--ink);
-  --primary: var(--oxblood);
-  --primary-foreground: var(--cream);
-  --secondary: var(--cream-deep);
+  --primary: var(--accent);
+  --primary-foreground: var(--accent-ink);
+  --secondary: var(--paper-2);
   --secondary-foreground: var(--ink);
-  --muted: var(--cream-deep);
-  --muted-foreground: oklch(0.4 0.02 40);
-  --accent: var(--oxblood);
-  --accent-foreground: var(--cream);
-  --destructive: oklch(0.55 0.22 27);
-  --destructive-foreground: var(--cream);
-  --border: oklch(0.85 0.02 60);
-  --input: oklch(0.85 0.02 60);
-  --ring: var(--oxblood);
+  --muted: var(--paper-2);
+  --muted-foreground: var(--ink-mute);
+  --accent-foreground: var(--accent-ink);
+  --destructive: #B00020;
+  --destructive-foreground: var(--paper);
+  --border: rgba(26, 26, 26, 0.12);
+  --input: rgba(26, 26, 26, 0.18);
+  --ring: var(--accent);
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes slide-in-left {
-  from { opacity: 0; transform: translateX(-60px); }
+  from { opacity: 0; transform: translateX(-24px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes slide-in-right {
-  from { opacity: 0; transform: translateX(60px); }
+  from { opacity: 0; transform: translateX(24px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes pop-in {
-  from { opacity: 0; transform: scale(0.92); }
+  from { opacity: 0; transform: scale(0.97); }
   to   { opacity: 1; transform: scale(1); }
 }
 
@@ -103,15 +110,66 @@
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-serif);
-    font-feature-settings: "liga", "kern";
+    font-family: var(--font-sans);
+    font-feature-settings: "kern", "liga", "tnum", "lnum", "ss01";
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* Editorial body text uses serif */
+  .prose-body, .prose-body p {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.55;
+    color: var(--ink);
+    hyphens: auto;
+  }
+
+  /* Drop cap — applied via .has-dropcap on the prose container */
+  .has-dropcap > p:first-of-type::first-letter {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    float: left;
+    font-size: 4.2em;
+    line-height: 0.9;
+    padding: 0.05em 0.12em 0 0;
+    color: var(--ink);
+  }
+
+  /* Inline highlight: accent underline, no background */
+  mark, .mark {
+    background: transparent;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  /* Footnote markers */
+  .fn-ref {
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    color: var(--accent);
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 0.1em;
+  }
+
+  /* Hairline rule helper */
+  .rule-t { border-top: 1px solid var(--rule); }
+  .rule-b { border-bottom: 1px solid var(--rule); }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
   }
 }
 
