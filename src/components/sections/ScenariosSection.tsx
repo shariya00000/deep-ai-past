@@ -246,10 +246,11 @@ export function ScenariosSection() {
         ))}
       </div>
 
-      {/* Reserved space for 5.2 / 5.3 */}
+      {/* 5.2 — Four policy archetypes */}
+      <ArchetypesBlock />
+
+      {/* Reserved space for 5.3 */}
       <div className="mt-20 border-t border-[color:var(--rule)]/30 pt-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
-        5.2 · Four policy archetypes — coming
-        <span className="mx-3 opacity-40">/</span>
         5.3 · Matrix — coming
       </div>
     </Section>
