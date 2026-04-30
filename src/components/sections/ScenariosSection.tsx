@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Section } from "./Section";
 import { ArchetypesBlock } from "./ArchetypesBlock";
+import { TrajectoriesBlock } from "./TrajectoriesBlock";
 import shock01 from "@/assets/shock-01-paris.jpg";
 import shock02 from "@/assets/shock-02-myanmar.jpg";
 import shock03 from "@/assets/shock-03-prosperity.jpg";
@@ -249,10 +250,8 @@ export function ScenariosSection() {
       {/* 5.2 — Four policy archetypes */}
       <ArchetypesBlock />
 
-      {/* Reserved space for 5.3 */}
-      <div className="mt-20 border-t border-[color:var(--rule)]/30 pt-8 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
-        5.3 · Matrix — coming
-      </div>
+      {/* 5.3 — Trajectories matrix */}
+      <TrajectoriesBlock />
     </Section>
   );
 }
