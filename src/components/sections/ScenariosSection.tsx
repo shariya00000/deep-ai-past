@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Section } from "./Section";
+import { ArchetypesBlock } from "./ArchetypesBlock";
 import shock01 from "@/assets/shock-01-paris.jpg";
 import shock02 from "@/assets/shock-02-myanmar.jpg";
 import shock03 from "@/assets/shock-03-prosperity.jpg";
