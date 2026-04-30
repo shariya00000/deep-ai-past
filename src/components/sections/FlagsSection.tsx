@@ -14,119 +14,158 @@ interface Dossier {
   dossierNum: string;
   country: string;
   kicker: string;
+  tensionLabel: string;
   ecosystem: React.ReactNode;
   tension: React.ReactNode;
   global: React.ReactNode;
 }
 
-/* ---------- Flags (inline SVG, viewBox 3:2) ---------- */
+/* ---------- Flags (inline SVG, accurate geometry) ---------- */
 
+/** China — official 30×20 grid. Big star centered at (5,5) radius 3.
+ *  Small stars (radius 1) placed at canonical positions, each rotated so
+ *  one point aims at the big star's center. */
 function FlagCN({ className }: { className?: string }) {
-  // 30x20 grid, canton large star at (5,5), 4 small stars around it
+  const big = { cx: 5, cy: 5 };
+  const smalls = [
+    { cx: 10, cy: 2 },
+    { cx: 12, cy: 4 },
+    { cx: 12, cy: 7 },
+    { cx: 10, cy: 9 },
+  ];
   return (
     <svg viewBox="0 0 30 20" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="30" height="20" fill="#C8242C" />
-      <g fill="#F0CE2C">
-        <Star cx={5} cy={5} r={3} />
-        <Star cx={10} cy={2} r={1} />
-        <Star cx={12} cy={4} r={1} />
-        <Star cx={12} cy={7} r={1} />
-        <Star cx={10} cy={9} r={1} />
+      <rect width="30" height="20" fill="#EE1C25" />
+      <g fill="#FFFF00">
+        {/* Big star — one point straight up */}
+        <Star cx={big.cx} cy={big.cy} r={3} />
+        {/* Small stars — orient one point toward the big star */}
+        {smalls.map((s, i) => {
+          const angle = Math.atan2(big.cy - s.cy, big.cx - s.cx) * (180 / Math.PI) + 90;
+          return <Star key={i} cx={s.cx} cy={s.cy} r={1} rotation={angle} />;
+        })}
       </g>
     </svg>
   );
 }
 
+/** Israel — 220×160 official ratio 8:11. White field, two blue stripes,
+ *  Star of David from two overlapping triangles (hexagram). */
 function FlagIL({ className }: { className?: string }) {
+  // Star of David — two equilateral triangles forming a hexagram.
+  const cx = 110;
+  const cy = 80;
+  const R = 27; // outer triangle radius
+  const tri = (rotation: number) => {
+    const pts = [0, 120, 240].map((deg) => {
+      const a = ((deg + rotation) - 90) * (Math.PI / 180);
+      return `${cx + R * Math.cos(a)},${cy + R * Math.sin(a)}`;
+    });
+    return pts.join(" ");
+  };
   return (
-    <svg viewBox="0 0 660 480" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="660" height="480" fill="#FFFFFF" />
-      <rect x="0" y="55" width="660" height="80" fill="#0038B8" />
-      <rect x="0" y="345" width="660" height="80" fill="#0038B8" />
-      {/* Star of David */}
-      <g fill="none" stroke="#0038B8" strokeWidth="22">
-        <polygon points="330,160 410,300 250,300" />
-        <polygon points="330,320 410,180 250,180" />
+    <svg viewBox="0 0 220 160" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="220" height="160" fill="#FFFFFF" />
+      <rect x="0" y="22" width="220" height="22" fill="#0038B8" />
+      <rect x="0" y="116" width="220" height="22" fill="#0038B8" />
+      <g fill="none" stroke="#0038B8" strokeWidth="4.5" strokeLinejoin="miter">
+        <polygon points={tri(0)} />
+        <polygon points={tri(180)} />
       </g>
     </svg>
   );
 }
 
+/** United States — 1235×650 (10:19) official spec. 13 stripes, union of
+ *  7 stripes height & 0.76 of stripe length. 50 stars in 9 staggered rows
+ *  (6/5/6/5/6/5/6/5/6 = 50). */
 function FlagUS({ className }: { className?: string }) {
-  const stripes = [];
+  const W = 1235;
+  const H = 650;
+  const stripeH = H / 13;
+  const stripes: React.ReactElement[] = [];
   for (let i = 0; i < 13; i++) {
     stripes.push(
       <rect
         key={i}
         x="0"
-        y={i * (260 / 13)}
-        width="494"
-        height={260 / 13}
+        y={i * stripeH}
+        width={W}
+        height={stripeH}
         fill={i % 2 === 0 ? "#B22234" : "#FFFFFF"}
       />,
     );
   }
-  // Canton: 7 stripes high
-  const cantonH = 7 * (260 / 13);
-  // 5x6 + 4x5 star grid
+  const cantonW = 0.76 * W * (7 / 13) * (W / W); // canton width per spec ≈ 0.76 * length of short side relation
+  // Per official spec canton width = 0.76 * (7 stripes) ratio doesn't apply directly; use canonical 247/494 ≈ 0.4 of width
+  const canton = { w: W * 0.4, h: stripeH * 7 };
+  // Star spacing: horizontal pitch H/30 in official; here use 6 cols / 5 cols staggered
   const stars: React.ReactElement[] = [];
-  const cantonW = 494 * 0.4;
-  const padX = cantonW / 12;
-  const padY = cantonH / 10;
+  const colPitch = canton.w / 12;
+  const rowPitch = canton.h / 10;
+  const starR = colPitch * 0.62;
   for (let row = 0; row < 9; row++) {
-    const isLong = row % 2 === 0;
+    const isLong = row % 2 === 0; // rows 0,2,4,6,8 → 6 stars; rows 1,3,5,7 → 5 stars
     const cols = isLong ? 6 : 5;
-    const offset = isLong ? 0 : padX;
+    const xOffset = isLong ? colPitch : colPitch * 2;
     for (let c = 0; c < cols; c++) {
-      const cx = padX + offset + c * (padX * 2);
-      const cy = padY + row * padY;
-      stars.push(<Star key={`${row}-${c}`} cx={cx} cy={cy} r={padX * 0.6} fill="#FFFFFF" />);
+      const cx = xOffset + c * (colPitch * 2);
+      const cy = rowPitch + row * rowPitch;
+      stars.push(<Star key={`${row}-${c}`} cx={cx} cy={cy} r={starR} fill="#FFFFFF" />);
     }
   }
   return (
-    <svg viewBox="0 0 494 260" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
       {stripes}
-      <rect x="0" y="0" width={cantonW} height={cantonH} fill="#3C3B6E" />
+      <rect x="0" y="0" width={canton.w} height={canton.h} fill="#3C3B6E" />
       {stars}
     </svg>
   );
 }
 
+/** European Union — 3:2 ratio. 12 yellow stars, ring radius = 1/3 of flag
+ *  height, centered. Each star has one point straight up (vertical axis). */
 function FlagEU({ className }: { className?: string }) {
+  const W = 150;
+  const H = 100;
+  const cx = W / 2;
+  const cy = H / 2;
+  const r = H / 3;
+  const starR = H / 18; // outer radius of each star
   const stars: React.ReactElement[] = [];
-  const cx = 50;
-  const cy = 50;
-  const r = 25;
   for (let i = 0; i < 12; i++) {
     const angle = (i * 30 - 90) * (Math.PI / 180);
     const x = cx + r * Math.cos(angle);
     const y = cy + r * Math.sin(angle);
-    stars.push(<Star key={i} cx={x} cy={y} r={3.5} fill="#FFCC00" />);
+    stars.push(<Star key={i} cx={x} cy={y} r={starR} fill="#FFCC00" />);
   }
   return (
-    <svg viewBox="0 0 150 100" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="150" height="100" fill="#003399" />
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width={W} height={H} fill="#003399" />
       {stars}
     </svg>
   );
 }
 
-/* 5-pointed star */
+/** 5-pointed star, one point up by default. `rotation` in degrees. */
 function Star({
   cx,
   cy,
   r,
   fill = "currentColor",
+  rotation = 0,
 }: {
   cx: number;
   cy: number;
   r: number;
   fill?: string;
+  rotation?: number;
 }) {
   const points: string[] = [];
+  const rot = (rotation * Math.PI) / 180;
   for (let i = 0; i < 10; i++) {
-    const angle = (Math.PI / 5) * i - Math.PI / 2;
-    const radius = i % 2 === 0 ? r : r * 0.4;
+    const angle = (Math.PI / 5) * i - Math.PI / 2 + rot;
+    const radius = i % 2 === 0 ? r : r * 0.382;
     points.push(`${cx + radius * Math.cos(angle)},${cy + radius * Math.sin(angle)}`);
   }
   return <polygon points={points.join(" ")} fill={fill} />;
@@ -153,34 +192,56 @@ const DOSSIERS: Dossier[] = [
     dossierNum: "01",
     country: "China",
     kicker: "The state inside the supply chain.",
+    tensionLabel: "Security tensions",
     ecosystem: (
       <>
-        China governs technology through a layered mix of regulation, self-regulation, and state
-        intervention. Baidu, Alibaba, Tencent, Huawei and Xiaomi are formally private but
-        structurally embedded in the security objectives of the 15th Five-Year Plan.{" "}
-        <E>Angela Zhang</E> characterizes the regulatory regime as a combination of hierarchy
-        (ultimate state control), volatility (rapid shifts), and fragility (dependence on feedback)
-        — a "Frankenstein" political economy sitting between command-and-control and market forces.
+        <p className="prose-body">
+          China governs its technological sector by balancing regulation, self-regulation, and
+          state intervention. Firms such as <E>Baidu</E>, <E>Alibaba</E>, <E>Tencent</E>,{" "}
+          <E>Huawei</E>, or <E>Xiaomi</E> operate as private actors but are closely aligned with
+          national strategy. AI is framed within a broader national security logic, with
+          technological leadership essential to state power. Private firms are structurally
+          embedded into security objectives rather than selectively contracted. The state is an
+          organizing force that aligns innovation with strategic priorities, like the ones set in
+          China's <E>15th Five-Year-Plan</E>, especially as the regime is enforced by the digital
+          power often described as digital authoritarianism. Political economy is described as
+          Frankenstein, working at the intersection of command-and-control and market forces.
+        </p>
+        <p className="prose-body mt-5">
+          According to <E>A. Zhang</E>, the Chinese regulatory system features a mix of hierarchy
+          (ultimate state control), volatility (adapting to rapid regulatory shifts), and
+          fragility (dependence on feedback). It is embedded in all the parts of the supply chain,
+          not only directing regulatory orientation, but also directing the investments.
+        </p>
       </>
     ),
     tension: (
-      <>
-        The Party blurs the state–private line. State-owned enterprises hold equity in roughly 35%
-        of private firms, and by 2021 Party organizations covered all 500 major companies. Control
-        is mostly indirect — subsidies, signals, personnel — but discipline is sudden when needed:
-        the 2020 suspension of <E>Ant Group</E>'s IPO and Jack Ma's withdrawal from public life
-        mark the ceiling on corporate autonomy. <E>DeepSeek</E>'s 2025 refusal to engage prompts on
-        Taiwan or Tiananmen shows that alignment now extends into model behavior itself.
-      </>
+      <p className="prose-body">
+        CCP blurred the distinction between state and private enterprises, with a share of private
+        firms receiving investment from state-owned enterprises at the level 35%. In 2021, China
+        achieved organizational coverage across all 500 major firms, which is linked with
+        expanding state capital participation. Control is often indirect, exercised through
+        incentives, subsidies, and political signaling rather than intervention. The 2020
+        suspension of <E>Ant Group</E>'s IPO illustrates that the state can abruptly discipline
+        even the most powerful firms. More broadly, the <E>Chinese Communist Party</E> has
+        deepened its presence within the private sector. Cases like <E>Jack Ma</E>'s
+        disappearance from public life demonstrate the limits of autonomy. The refusal of LLM{" "}
+        <E>DeepSeek</E>, published in 2025, to respond to the prompts regarding Taiwan's autonomy
+        or the Tiananmen Square events, further presents limitations in the autonomy of the tech
+        companies and their alignment with Chinese guidelines on the ethics review and service of
+        artificial intelligence (AI) technology.
+      </p>
     ),
     global: (
-      <>
-        The <E>Belt and Road Initiative</E> — and specifically the <E>Digital Silk Road</E> —
-        exports both infrastructure and a surveillance model. At the 19th Party Congress (2017),
-        Xi Jinping committed China to becoming a cyber superpower (网络强国, wǎngluò qiángguó).
-        The dependency runs the other way too: Chinese surveillance hardware still relies on
-        American and European components.
-      </>
+      <p className="prose-body">
+        China's technological development is strictly connected to its foreign policy goals, as it
+        exports its innovations and products through the <E>Belt and Road Initiative</E> and, more
+        specifically, the <E>Digital Silk Road</E>. That not only means exporting infrastructure,
+        but also a surveillance model. In 2017, during the speech at the 19th Party Congress, CCP
+        head <E>Xi Jinping</E> outlined the plan for China to emerge as a cyber superpower
+        (网络强国, wǎngluò qiángguó). However, China still relies on foreign innovation, with
+        American and European components used in its surveillance systems.
+      </p>
     ),
   },
   {
@@ -188,36 +249,45 @@ const DOSSIERS: Dossier[] = [
     dossierNum: "02",
     country: "United States",
     kicker: "The negotiated nation-company hybrid.",
+    tensionLabel: "Private–public tensions",
     ecosystem: (
-      <>
-        The ecosystem is privately owned and geographically concentrated in Silicon Valley.
-        Frontier capability sits with <E>OpenAI</E>, <E>Anthropic</E>, <E>Google</E>, and{" "}
-        <E>Meta</E>; infrastructure is dominated by Microsoft and Amazon. Alignment with the state
-        is negotiated, not imposed — via procurement, subsidies, and regulatory incentives. Firms
-        accept some interventionism in exchange for contracts, regulatory protection, or
-        geopolitical backing (<E>Palantir</E>, <E>SpaceX</E>), producing a nation-company hybrid:
-        formal independence, instrumental function.
-      </>
+      <p className="prose-body">
+        The ecosystem is privately owned and highly geographically concentrated in Silicon Valley,
+        which reinforces the leading role of private clusters. Frontier capabilities are developed
+        by firms such as <E>OpenAI</E>, <E>Anthropic</E>, <E>Google</E>, and <E>Meta</E>, with
+        infrastructure dominated by cloud providers like <E>Microsoft</E> and <E>Amazon</E>.
+        Alignment with the state is negotiated rather than imposed with procurement power,
+        subsidies, and regulatory incentives. However, this balance is fragile, as the tech
+        companies accept some state interventionism in exchange for contracts, regulatory
+        protection or geopolitical backing (like <E>Palantir</E> or <E>SpaceX</E>), creating a
+        "nation-company hybrid", where private companies are instruments of the state, while
+        having formal independence.
+      </p>
     ),
     tension: (
-      <>
-        America's <E>AI Action Plan</E> treats domestic innovation and technological dominance as
-        a national-security imperative. The Department of War's push to become an "AI-first" force
-        pulls frontier labs like OpenAI into defense and intelligence contracting — introducing
-        capabilities developed largely outside classified environments into national defense.{" "}
-        <E>Project Maven</E> and the <E>Defense Innovation Unit</E> formalize the collaboration,
-        and personnel circulate between Silicon Valley and the Pentagon. Firms retain a real
-        refusal right: Anthropic has resisted DoD demands around surveillance and autonomous
-        weapons applications.
-      </>
+      <p className="prose-body">
+        America's <E>AI Action Plan</E> frames harnessing American innovation and maintaining
+        global technological dominance as a national security imperative. The US Department of
+        War's strategy to become an "AI-first" warfighting force is accelerated by introducing
+        privately developed AI to military and intelligence contracting companies as OpenAI. That
+        dependence is threatening security as they are primarily developed outside classified
+        environments. Programs such as <E>Project Maven</E> and the <E>Defense Innovation Unit</E>{" "}
+        formalize collaboration. Increasingly, the boundary between Silicon Valley and the
+        Pentagon is blurring, with personnel circulating between both spheres and private firms
+        directly shaping military capabilities. Companies retain the ability to refuse certain
+        uses of their technologies, as illustrated by <E>Anthropic</E> resisting Department of
+        Defense demands regarding surveillance and autonomous weapons applications.
+      </p>
     ),
     global: (
-      <>
-        Direct private exports — including ISR capability to Ukraine — reshape the state-centered
-        model of war. US firms supply the majority of global intelligence, surveillance, and
-        reconnaissance capacity. Global user data is routed through US-based platforms, and US
-        cloud providers hold roughly two-thirds of the global cloud market.
-      </>
+      <p className="prose-body">
+        The export of American technologies by private actors to <E>Ukraine</E> highlights how
+        state control and a state-centered model of war are transformed. US firms supply a large
+        share of intelligence, surveillance, and reconnaissance capabilities worldwide. The data
+        of global users is trapped by US-based companies, shaping data flows and digital
+        behaviour, and US cloud infrastructure providers account for two-thirds of the global
+        cloud market.
+      </p>
     ),
   },
   {
@@ -225,36 +295,57 @@ const DOSSIERS: Dossier[] = [
     dossierNum: "03",
     country: "Israel",
     kicker: "Start-up nation, live-fire lab.",
+    tensionLabel: "Private–public tensions",
     ecosystem: (
-      <>
-        High-tech makes up roughly 17% of GDP, and the defense-tech sector employs over 100,000
-        people. Military, academia, and industry are vertically integrated; operations in Gaza and
-        the West Bank function as a continuous testing ground. <E>Unit 8200</E> and the{" "}
-        <E>C4I Directorate</E> operate as both training and innovation hubs. National objectives —
-        cyber robustness, resilience, capacity — are codified in Israel's National Cybersecurity
-        and Cyberdefense Posture.
-      </>
+      <p className="prose-body">
+        Israel is often referred to as "Start up Nation", with high tech making up 17% of Israel's
+        GDP, which legitimises, finances, and maintains its regime. The defense technology sector
+        directly employs over 100,000 individuals. Military, academia, and industry are integrated
+        and allow translation of research into operating systems. Israel is constantly exercising
+        its military capabilities in the Gaza Strip and the West Bank, allowing it to test the
+        efficiency of the technological tools. Institutions such as the{" "}
+        <E>Israel Defense Forces</E> (notably <E>Unit 8200</E> and <E>C4I Directorate</E>) act as
+        training grounds and innovation hubs. Its goals are set in Israel's National Cybersecurity
+        and Cyberdefense Posture, focusing on developing cyber robustness, cyber resilience, and
+        capacity.
+      </p>
     ),
     tension: (
       <>
-        Private firms function as extensions of the security apparatus. Universal conscription
-        embeds security culture across the population; <E>Ben-Gurion</E>'s doctrine — deterrence,
-        decisive victory, early warning, alliances — still structures strategy. Tools built by
-        private firms (<E>Lavender</E> for target rating, <E>The Gospel</E> for target-list
-        generation, <E>Where's Daddy</E> for location tracking) are integrated directly into IDF
-        operations. The <E>Israel Innovation Authority</E> funds start-ups, but the IDF
-        preferentially contracts established firms; entrepreneurs report bureaucratic delay,
-        restricted data access, and opaque rules.
+        <p className="prose-body">
+          Private companies are seen as extensions of the technological power of the state
+          apparatus, intersecting intelligence and the market.
+        </p>
+        <p className="prose-body mt-5">
+          The security culture is embedded in the functioning of Israel, with all citizens
+          required to execute at least 2 years of military service and <E>Ben Gurion</E>'s
+          principles: deterrence, decisive victory, early warning, and alliances. The universities
+          are strongly tied to academic knowledge and defense applications. The technologies
+          developed by private companies such as <E>Lavender</E> (rating individuals for targeting
+          purposes), <E>The Gospel</E> (generating targeting lists), or <E>Where's Daddy</E>{" "}
+          (tracking individuals' locations) are integrated in the military and align with security
+          goals. Even though the <E>Israel Innovation Authority</E> sets programs for start-ups,
+          the IDF disadvantages them while contracting with well-established companies.
+          Entrepreneurs report bureaucratic delays, limited access to data and restrictive, opaque
+          regulations.
+        </p>
       </>
     ),
     global: (
       <>
-        Israel is structurally dependent on American software, often repurposed for military use
-        in violation of vendor terms of service. The January 2025{" "}
-        <E>US–Israel Strategic Partnership on AI, Research, and Critical Technologies</E>{" "}
-        formalizes that dependency. Israel is not a Wassenaar signatory and exported $14.7bn in
-        defense equipment in 2024; cases like <E>NSO Group</E>'s Pegasus illustrate how private
-        firms proliferate state-grade capabilities globally.
+        <p className="prose-body">
+          Israel is highly dependent on foreign, particularly American, software and adding to its
+          military value, even though military repurposing often violates the terms of service.
+          Israel and the United States launched in January 2025 a{" "}
+          <E>Strategic Partnership on Artificial Intelligence, Research, and Critical Technologies</E>,
+          which further introduced external actors into its security architecture.
+        </p>
+        <p className="prose-body mt-5">
+          Israel is not a signatory on <E>Wassenaar Arrangements</E>, regulating exports of arms
+          and dual use goods. In 2024, exported defense equipment valued at $14.7 bln worldwide,
+          as seen in cases like <E>NSO Group</E> (Pegasus), contributing to the proliferation of
+          capabilities once limited to states.
+        </p>
       </>
     ),
   },
@@ -263,36 +354,45 @@ const DOSSIERS: Dossier[] = [
     dossierNum: "04",
     country: "European Union",
     kicker: "Regulatory power, commercial weakness.",
+    tensionLabel: "Private–state tensions",
     ecosystem: (
-      <>
-        The ecosystem is fragmented, research-strong, commercially thin. Innovation comes from
-        SMEs, research institutions, and a small layer of firms (<E>Mistral AI</E>, <E>SAP</E>);
-        private investment remains limited. Public initiatives — <E>AI factories</E>, gigafactories,{" "}
-        <E>InvestAI</E> — attempt to substitute for missing "patient capital." The{" "}
-        <E>European AI Strategy</E> sets twin goals of leading hubs and human-centric, trustworthy
-        systems. Capability is unevenly distributed across member states.
-      </>
+      <p className="prose-body">
+        The EU's AI ecosystem is fragmented, research-strong, but weaker commercially. Innovation
+        is driven by a mix of SMEs, research institutions, and a limited number of firms such as{" "}
+        <E>Mistral AI</E> and <E>SAP</E>, but the scale of private investment remains limited.
+        Public initiatives, such as <E>AI factories</E>, gigafactories, and the <E>InvestAI</E>{" "}
+        facilities, aim to close the gap of lack of "patient capital" by shared infrastructure and
+        direct investment. <E>European AI Strategy</E> aimed at both creating leading AI hubs,
+        while ensuring their human centrism and trustworthiness. The AI capabilities are spread
+        unevenly across member countries.
+      </p>
     ),
     tension: (
       <>
-        Responding to criticism of overregulation, the EU is now deregulating to recover
-        innovation capacity. <E>Europol</E> is expanding ties with foreign industry — including a
-        Microsoft desk at its headquarters. Industrial policy increasingly routes through
-        "patriotic billionaires" as intermediaries. AI factories function more as research
-        institutions than commercial actors, which limits private-sector application. Member
-        states with national AI strategies show higher readiness than those without. The{" "}
-        <E>AI Act</E> explicitly exempts dual-use technologies used for military, defense, or
-        national security purposes.
+        <p className="prose-body">
+          As a reaction to the criticism of overregulating AI, the EU introduces deregulation in
+          order to boost its innovation capacity, strengthen industry, and attract investment and
+          talent. <E>Europol</E>, as European countries' armies, is expanding ties with foreign
+          industries by initiatives such as establishing Microsoft desks at agency's headquarters.
+          What's more, market-based industrial policies prioritize "patriotic billionaires" acting
+          as intermediaries. AI factories are functioning as research institutions more than
+          commercial actors, which may hinder AI applications in the private sector. The countries
+          with AI strategies reflect higher readiness.
+        </p>
+        <p className="prose-body mt-5">
+          The <E>AI Act</E> leaves a space for dual-use technologies, which are not subject to the
+          regulations, exclusively for military, defense or national security services.
+        </p>
       </>
     ),
     global: (
-      <>
-        The EU remains structurally dependent on non-European infrastructure but exercises
-        normative power through the <E>"Brussels Effect,"</E> setting de facto international
-        standards for AI governance. European firms — <E>SAP</E>, <E>Siemens</E>, <E>ASML</E> —
-        hold critical positions in global AI supply chains, embedded across surveillance,
-        industrial, and defense systems.
-      </>
+      <p className="prose-body">
+        The EU remains structurally dependent on non-European infrastructure providers. It uses
+        its regulatory stance as normative power, allowing it to set international standards for
+        AI governance known as the <E>"Brussels Effect"</E>. However, European components are
+        embedded in surveillance, industrial, and defense technologies. European firms such as{" "}
+        <E>SAP</E>, <E>Siemens</E>, and <E>ASML</E> hold crucial positions in AI supply chains.
+      </p>
     ),
   },
 ];
@@ -427,7 +527,7 @@ function DossierBody({ dossier, onClose }: { dossier: Dossier; onClose: () => vo
       {/* Body — three subsections */}
       <div className="mx-auto max-w-[640px]">
         <DossierSubsection label="AI ecosystem">{dossier.ecosystem}</DossierSubsection>
-        <DossierSubsection label="Private–public tension">{dossier.tension}</DossierSubsection>
+        <DossierSubsection label={dossier.tensionLabel}>{dossier.tension}</DossierSubsection>
         <DossierSubsection label="Global influences" last>
           {dossier.global}
         </DossierSubsection>
@@ -450,7 +550,7 @@ function DossierSubsection({
       <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
         {label}
       </div>
-      <p className="prose-body">{children}</p>
+      <div className="prose-body">{children}</div>
     </div>
   );
 }
