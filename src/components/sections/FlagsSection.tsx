@@ -216,7 +216,7 @@ const DOSSIERS: Dossier[] = [
       </>
     ),
     tension: (
-      <>
+      <p className="prose-body">
         CCP blurred the distinction between state and private enterprises, with a share of private
         firms receiving investment from state-owned enterprises at the level 35%. In 2021, China
         achieved organizational coverage across all 500 major firms, which is linked with
@@ -230,10 +230,10 @@ const DOSSIERS: Dossier[] = [
         or the Tiananmen Square events, further presents limitations in the autonomy of the tech
         companies and their alignment with Chinese guidelines on the ethics review and service of
         artificial intelligence (AI) technology.
-      </>
+      </p>
     ),
     global: (
-      <>
+      <p className="prose-body">
         China's technological development is strictly connected to its foreign policy goals, as it
         exports its innovations and products through the <E>Belt and Road Initiative</E> and, more
         specifically, the <E>Digital Silk Road</E>. That not only means exporting infrastructure,
@@ -241,7 +241,7 @@ const DOSSIERS: Dossier[] = [
         head <E>Xi Jinping</E> outlined the plan for China to emerge as a cyber superpower
         (网络强国, wǎngluò qiángguó). However, China still relies on foreign innovation, with
         American and European components used in its surveillance systems.
-      </>
+      </p>
     ),
   },
   {
@@ -251,7 +251,7 @@ const DOSSIERS: Dossier[] = [
     kicker: "The negotiated nation-company hybrid.",
     tensionLabel: "Private–public tensions",
     ecosystem: (
-      <>
+      <p className="prose-body">
         The ecosystem is privately owned and highly geographically concentrated in Silicon Valley,
         which reinforces the leading role of private clusters. Frontier capabilities are developed
         by firms such as <E>OpenAI</E>, <E>Anthropic</E>, <E>Google</E>, and <E>Meta</E>, with
@@ -262,10 +262,10 @@ const DOSSIERS: Dossier[] = [
         protection or geopolitical backing (like <E>Palantir</E> or <E>SpaceX</E>), creating a
         "nation-company hybrid", where private companies are instruments of the state, while
         having formal independence.
-      </>
+      </p>
     ),
     tension: (
-      <>
+      <p className="prose-body">
         America's <E>AI Action Plan</E> frames harnessing American innovation and maintaining
         global technological dominance as a national security imperative. The US Department of
         War's strategy to become an "AI-first" warfighting force is accelerated by introducing
@@ -277,17 +277,17 @@ const DOSSIERS: Dossier[] = [
         directly shaping military capabilities. Companies retain the ability to refuse certain
         uses of their technologies, as illustrated by <E>Anthropic</E> resisting Department of
         Defense demands regarding surveillance and autonomous weapons applications.
-      </>
+      </p>
     ),
     global: (
-      <>
+      <p className="prose-body">
         The export of American technologies by private actors to <E>Ukraine</E> highlights how
         state control and a state-centered model of war are transformed. US firms supply a large
         share of intelligence, surveillance, and reconnaissance capabilities worldwide. The data
         of global users is trapped by US-based companies, shaping data flows and digital
         behaviour, and US cloud infrastructure providers account for two-thirds of the global
         cloud market.
-      </>
+      </p>
     ),
   },
   {
@@ -297,7 +297,7 @@ const DOSSIERS: Dossier[] = [
     kicker: "Start-up nation, live-fire lab.",
     tensionLabel: "Private–public tensions",
     ecosystem: (
-      <>
+      <p className="prose-body">
         Israel is often referred to as "Start up Nation", with high tech making up 17% of Israel's
         GDP, which legitimises, finances, and maintains its regime. The defense technology sector
         directly employs over 100,000 individuals. Military, academia, and industry are integrated
@@ -308,7 +308,7 @@ const DOSSIERS: Dossier[] = [
         training grounds and innovation hubs. Its goals are set in Israel's National Cybersecurity
         and Cyberdefense Posture, focusing on developing cyber robustness, cyber resilience, and
         capacity.
-      </>
+      </p>
     ),
     tension: (
       <>
@@ -356,7 +356,7 @@ const DOSSIERS: Dossier[] = [
     kicker: "Regulatory power, commercial weakness.",
     tensionLabel: "Private–state tensions",
     ecosystem: (
-      <>
+      <p className="prose-body">
         The EU's AI ecosystem is fragmented, research-strong, but weaker commercially. Innovation
         is driven by a mix of SMEs, research institutions, and a limited number of firms such as{" "}
         <E>Mistral AI</E> and <E>SAP</E>, but the scale of private investment remains limited.
@@ -365,7 +365,7 @@ const DOSSIERS: Dossier[] = [
         direct investment. <E>European AI Strategy</E> aimed at both creating leading AI hubs,
         while ensuring their human centrism and trustworthiness. The AI capabilities are spread
         unevenly across member countries.
-      </>
+      </p>
     ),
     tension: (
       <>
@@ -386,13 +386,13 @@ const DOSSIERS: Dossier[] = [
       </>
     ),
     global: (
-      <>
+      <p className="prose-body">
         The EU remains structurally dependent on non-European infrastructure providers. It uses
         its regulatory stance as normative power, allowing it to set international standards for
         AI governance known as the <E>"Brussels Effect"</E>. However, European components are
         embedded in surveillance, industrial, and defense technologies. European firms such as{" "}
         <E>SAP</E>, <E>Siemens</E>, and <E>ASML</E> hold crucial positions in AI supply chains.
-      </>
+      </p>
     ),
   },
 ];
