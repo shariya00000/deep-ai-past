@@ -527,7 +527,7 @@ function DossierBody({ dossier, onClose }: { dossier: Dossier; onClose: () => vo
       {/* Body — three subsections */}
       <div className="mx-auto max-w-[640px]">
         <DossierSubsection label="AI ecosystem">{dossier.ecosystem}</DossierSubsection>
-        <DossierSubsection label="Private–public tension">{dossier.tension}</DossierSubsection>
+        <DossierSubsection label={dossier.tensionLabel}>{dossier.tension}</DossierSubsection>
         <DossierSubsection label="Global influences" last>
           {dossier.global}
         </DossierSubsection>
@@ -550,7 +550,7 @@ function DossierSubsection({
       <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
         {label}
       </div>
-      <p className="prose-body">{children}</p>
+      <div className="prose-body">{children}</div>
     </div>
   );
 }
