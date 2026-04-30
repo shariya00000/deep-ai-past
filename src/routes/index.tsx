@@ -3,6 +3,7 @@ import { IntroSection } from "@/components/sections/IntroSection";
 import { GptsTimelineSection } from "@/components/sections/GptsTimelineSection";
 import { ConvergenceInterstitial } from "@/components/sections/ConvergenceInterstitial";
 import { TensionsSection } from "@/components/sections/TensionsSection";
+import { FlagsSection } from "@/components/sections/FlagsSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -26,6 +27,7 @@ function Index() {
           <nav className="flex items-center gap-5 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
             <a href="#section-02" className="hover:text-[color:var(--accent)]">§ 02</a>
             <a href="#section-03" className="hover:text-[color:var(--accent)]">§ 03</a>
+            <a href="#section-04" className="hover:text-[color:var(--accent)]">§ 04</a>
             <span className="hidden text-[color:var(--ink)] md:inline">2026</span>
           </nav>
         </div>
@@ -35,6 +37,7 @@ function Index() {
       <div id="section-02"><GptsTimelineSection /></div>
       <ConvergenceInterstitial />
       <div id="section-03"><TensionsSection /></div>
+      <div id="section-04"><FlagsSection /></div>
 
       {/* Colophon footer */}
       <footer className="border-t border-[color:var(--rule)] px-6 py-12">
