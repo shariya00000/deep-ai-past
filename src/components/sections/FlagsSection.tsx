@@ -19,114 +19,152 @@ interface Dossier {
   global: React.ReactNode;
 }
 
-/* ---------- Flags (inline SVG, viewBox 3:2) ---------- */
+/* ---------- Flags (inline SVG, accurate geometry) ---------- */
 
+/** China — official 30×20 grid. Big star centered at (5,5) radius 3.
+ *  Small stars (radius 1) placed at canonical positions, each rotated so
+ *  one point aims at the big star's center. */
 function FlagCN({ className }: { className?: string }) {
-  // 30x20 grid, canton large star at (5,5), 4 small stars around it
+  const big = { cx: 5, cy: 5 };
+  const smalls = [
+    { cx: 10, cy: 2 },
+    { cx: 12, cy: 4 },
+    { cx: 12, cy: 7 },
+    { cx: 10, cy: 9 },
+  ];
   return (
     <svg viewBox="0 0 30 20" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="30" height="20" fill="#C8242C" />
-      <g fill="#F0CE2C">
-        <Star cx={5} cy={5} r={3} />
-        <Star cx={10} cy={2} r={1} />
-        <Star cx={12} cy={4} r={1} />
-        <Star cx={12} cy={7} r={1} />
-        <Star cx={10} cy={9} r={1} />
+      <rect width="30" height="20" fill="#EE1C25" />
+      <g fill="#FFFF00">
+        {/* Big star — one point straight up */}
+        <Star cx={big.cx} cy={big.cy} r={3} />
+        {/* Small stars — orient one point toward the big star */}
+        {smalls.map((s, i) => {
+          const angle = Math.atan2(big.cy - s.cy, big.cx - s.cx) * (180 / Math.PI) + 90;
+          return <Star key={i} cx={s.cx} cy={s.cy} r={1} rotation={angle} />;
+        })}
       </g>
     </svg>
   );
 }
 
+/** Israel — 220×160 official ratio 8:11. White field, two blue stripes,
+ *  Star of David from two overlapping triangles (hexagram). */
 function FlagIL({ className }: { className?: string }) {
+  // Star of David — two equilateral triangles forming a hexagram.
+  const cx = 110;
+  const cy = 80;
+  const R = 27; // outer triangle radius
+  const tri = (rotation: number) => {
+    const pts = [0, 120, 240].map((deg) => {
+      const a = ((deg + rotation) - 90) * (Math.PI / 180);
+      return `${cx + R * Math.cos(a)},${cy + R * Math.sin(a)}`;
+    });
+    return pts.join(" ");
+  };
   return (
-    <svg viewBox="0 0 660 480" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="660" height="480" fill="#FFFFFF" />
-      <rect x="0" y="55" width="660" height="80" fill="#0038B8" />
-      <rect x="0" y="345" width="660" height="80" fill="#0038B8" />
-      {/* Star of David */}
-      <g fill="none" stroke="#0038B8" strokeWidth="22">
-        <polygon points="330,160 410,300 250,300" />
-        <polygon points="330,320 410,180 250,180" />
+    <svg viewBox="0 0 220 160" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width="220" height="160" fill="#FFFFFF" />
+      <rect x="0" y="22" width="220" height="22" fill="#0038B8" />
+      <rect x="0" y="116" width="220" height="22" fill="#0038B8" />
+      <g fill="none" stroke="#0038B8" strokeWidth="4.5" strokeLinejoin="miter">
+        <polygon points={tri(0)} />
+        <polygon points={tri(180)} />
       </g>
     </svg>
   );
 }
 
+/** United States — 1235×650 (10:19) official spec. 13 stripes, union of
+ *  7 stripes height & 0.76 of stripe length. 50 stars in 9 staggered rows
+ *  (6/5/6/5/6/5/6/5/6 = 50). */
 function FlagUS({ className }: { className?: string }) {
-  const stripes = [];
+  const W = 1235;
+  const H = 650;
+  const stripeH = H / 13;
+  const stripes: React.ReactElement[] = [];
   for (let i = 0; i < 13; i++) {
     stripes.push(
       <rect
         key={i}
         x="0"
-        y={i * (260 / 13)}
-        width="494"
-        height={260 / 13}
+        y={i * stripeH}
+        width={W}
+        height={stripeH}
         fill={i % 2 === 0 ? "#B22234" : "#FFFFFF"}
       />,
     );
   }
-  // Canton: 7 stripes high
-  const cantonH = 7 * (260 / 13);
-  // 5x6 + 4x5 star grid
+  const cantonW = 0.76 * W * (7 / 13) * (W / W); // canton width per spec ≈ 0.76 * length of short side relation
+  // Per official spec canton width = 0.76 * (7 stripes) ratio doesn't apply directly; use canonical 247/494 ≈ 0.4 of width
+  const canton = { w: W * 0.4, h: stripeH * 7 };
+  // Star spacing: horizontal pitch H/30 in official; here use 6 cols / 5 cols staggered
   const stars: React.ReactElement[] = [];
-  const cantonW = 494 * 0.4;
-  const padX = cantonW / 12;
-  const padY = cantonH / 10;
+  const colPitch = canton.w / 12;
+  const rowPitch = canton.h / 10;
+  const starR = colPitch * 0.62;
   for (let row = 0; row < 9; row++) {
-    const isLong = row % 2 === 0;
+    const isLong = row % 2 === 0; // rows 0,2,4,6,8 → 6 stars; rows 1,3,5,7 → 5 stars
     const cols = isLong ? 6 : 5;
-    const offset = isLong ? 0 : padX;
+    const xOffset = isLong ? colPitch : colPitch * 2;
     for (let c = 0; c < cols; c++) {
-      const cx = padX + offset + c * (padX * 2);
-      const cy = padY + row * padY;
-      stars.push(<Star key={`${row}-${c}`} cx={cx} cy={cy} r={padX * 0.6} fill="#FFFFFF" />);
+      const cx = xOffset + c * (colPitch * 2);
+      const cy = rowPitch + row * rowPitch;
+      stars.push(<Star key={`${row}-${c}`} cx={cx} cy={cy} r={starR} fill="#FFFFFF" />);
     }
   }
   return (
-    <svg viewBox="0 0 494 260" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
       {stripes}
-      <rect x="0" y="0" width={cantonW} height={cantonH} fill="#3C3B6E" />
+      <rect x="0" y="0" width={canton.w} height={canton.h} fill="#3C3B6E" />
       {stars}
     </svg>
   );
 }
 
+/** European Union — 3:2 ratio. 12 yellow stars, ring radius = 1/3 of flag
+ *  height, centered. Each star has one point straight up (vertical axis). */
 function FlagEU({ className }: { className?: string }) {
+  const W = 150;
+  const H = 100;
+  const cx = W / 2;
+  const cy = H / 2;
+  const r = H / 3;
+  const starR = H / 18; // outer radius of each star
   const stars: React.ReactElement[] = [];
-  const cx = 50;
-  const cy = 50;
-  const r = 25;
   for (let i = 0; i < 12; i++) {
     const angle = (i * 30 - 90) * (Math.PI / 180);
     const x = cx + r * Math.cos(angle);
     const y = cy + r * Math.sin(angle);
-    stars.push(<Star key={i} cx={x} cy={y} r={3.5} fill="#FFCC00" />);
+    stars.push(<Star key={i} cx={x} cy={y} r={starR} fill="#FFCC00" />);
   }
   return (
-    <svg viewBox="0 0 150 100" className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <rect width="150" height="100" fill="#003399" />
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} preserveAspectRatio="xMidYMid slice" aria-hidden>
+      <rect width={W} height={H} fill="#003399" />
       {stars}
     </svg>
   );
 }
 
-/* 5-pointed star */
+/** 5-pointed star, one point up by default. `rotation` in degrees. */
 function Star({
   cx,
   cy,
   r,
   fill = "currentColor",
+  rotation = 0,
 }: {
   cx: number;
   cy: number;
   r: number;
   fill?: string;
+  rotation?: number;
 }) {
   const points: string[] = [];
+  const rot = (rotation * Math.PI) / 180;
   for (let i = 0; i < 10; i++) {
-    const angle = (Math.PI / 5) * i - Math.PI / 2;
-    const radius = i % 2 === 0 ? r : r * 0.4;
+    const angle = (Math.PI / 5) * i - Math.PI / 2 + rot;
+    const radius = i % 2 === 0 ? r : r * 0.382;
     points.push(`${cx + radius * Math.cos(angle)},${cy + radius * Math.sin(angle)}`);
   }
   return <polygon points={points.join(" ")} fill={fill} />;
