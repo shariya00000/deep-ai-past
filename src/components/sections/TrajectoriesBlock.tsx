@@ -25,9 +25,9 @@ const SCENARIOS: { id: ScenarioId; label: string }[] = [
 
 const POSITIONS: Record<ScenarioId, Record<CountryCode, [number, number]>> = {
   baseline: { CN: [25, 40], US: [70, 60], IL: [60, 35], EU: [50, 75] },
-  shock1: { CN: [30, 80], US: [40, 75], IL: [22, 22], EU: [35, 65] },
-  shock2: { CN: [18, 28], US: [12, 55], IL: [45, 40], EU: [30, 48] },
-  shock3: { CN: [55, 32], US: [90, 55], IL: [65, 35], EU: [72, 45] },
+  shock1: { CN: [30, 68], US: [40, 75], IL: [22, 22], EU: [35, 82] },
+  shock2: { CN: [18, 28], US: [12, 55], IL: [45, 40], EU: [30, 55] },
+  shock3: { CN: [55, 32], US: [90, 55], IL: [65, 35], EU: [72, 60] },
 };
 
 interface CountryBlock {
@@ -327,7 +327,7 @@ export function TrajectoriesBlock() {
             className="absolute left-0 right-0 text-center font-mono uppercase text-[color:var(--accent)]"
             style={{ top: 32, fontSize: 12, letterSpacing: "0.15em", opacity: 0.85 }}
           >
-            MULTILATERALISM ↑
+            INTERNATIONALISATION ↑
           </div>
           {/* Bottom axis label */}
           <div
