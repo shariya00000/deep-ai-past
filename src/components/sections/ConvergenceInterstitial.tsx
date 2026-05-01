@@ -47,7 +47,7 @@ export function ConvergenceInterstitial() {
             }}
           >
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--inverse-fg)]/70">
-              GPTs transform economies
+              GPTs transform societies
             </div>
             <Track direction="right" />
           </div>
@@ -76,7 +76,7 @@ export function ConvergenceInterstitial() {
             }}
           >
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--inverse-fg)]/70">
-              States compete for security
+              States and private power contest security
             </div>
             <Track direction="left" />
           </div>

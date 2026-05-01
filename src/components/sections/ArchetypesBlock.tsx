@@ -133,7 +133,7 @@ export function ArchetypesBlock() {
       </div>
 
       <h3 className="mb-4 text-3xl leading-[1.05] tracking-[-0.025em] text-[color:var(--ink)] md:text-4xl font-medium">
-        How states could respond.
+        Outcomes.
       </h3>
 
       <p className="mb-10 max-w-[720px] font-serif text-base italic leading-snug text-[color:var(--ink-2)] md:text-lg">
