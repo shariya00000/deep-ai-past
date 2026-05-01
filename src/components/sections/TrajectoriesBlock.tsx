@@ -179,6 +179,72 @@ const ZONES: { name: string; x: number; y: number }[] = [
   { name: "State Capture", x: 82, y: 50 },
 ];
 
+function FlagSvg({ code }: { code: CountryCode }) {
+  const common = {
+    width: "100%",
+    height: "100%",
+    preserveAspectRatio: "none" as const,
+    style: { display: "block", filter: "saturate(0.85)" },
+  };
+  if (code === "CN") {
+    return (
+      <svg viewBox="0 0 60 40" {...common}>
+        <rect width="60" height="40" fill="#C8242C" />
+        <g fill="#F0CE2C">
+          <polygon points="10,6 11.2,9.2 14.5,9.2 11.9,11.2 12.9,14.4 10,12.5 7.1,14.4 8.1,11.2 5.5,9.2 8.8,9.2" />
+          <circle r="1" cx="18" cy="4" />
+          <circle r="1" cx="22" cy="7" />
+          <circle r="1" cx="22" cy="12" />
+          <circle r="1" cx="18" cy="15" />
+        </g>
+      </svg>
+    );
+  }
+  if (code === "US") {
+    return (
+      <svg viewBox="0 0 60 40" {...common}>
+        {Array.from({ length: 13 }).map((_, i) => (
+          <rect key={i} x="0" y={i * (40 / 13)} width="60" height={40 / 13} fill={i % 2 === 0 ? "#B22234" : "#FFFFFF"} />
+        ))}
+        <rect width="24" height={40 * (7 / 13)} fill="#3C3B6E" />
+        <g fill="#FFFFFF">
+          {Array.from({ length: 4 }).flatMap((_, r) =>
+            Array.from({ length: 5 }).map((_, c) => (
+              <circle key={`${r}-${c}`} cx={2.5 + c * 4.5} cy={2.5 + r * 4.5} r="0.7" />
+            ))
+          )}
+        </g>
+      </svg>
+    );
+  }
+  if (code === "IL") {
+    return (
+      <svg viewBox="0 0 60 40" {...common}>
+        <rect width="60" height="40" fill="#FFFFFF" />
+        <rect x="0" y="5" width="60" height="5" fill="#0038B8" />
+        <rect x="0" y="30" width="60" height="5" fill="#0038B8" />
+        <g fill="none" stroke="#0038B8" strokeWidth="1.2">
+          <polygon points="30,14 34,21 26,21" />
+          <polygon points="30,26 34,19 26,19" />
+        </g>
+      </svg>
+    );
+  }
+  // EU
+  const stars = Array.from({ length: 12 }).map((_, i) => {
+    const angle = (i / 12) * Math.PI * 2 - Math.PI / 2;
+    const cx = 30 + Math.cos(angle) * 13;
+    const cy = 20 + Math.sin(angle) * 13;
+    return <circle key={i} cx={cx} cy={cy} r="1.4" fill="#FFCC00" />;
+  });
+  return (
+    <svg viewBox="0 0 60 40" {...common}>
+      <rect width="60" height="40" fill="#003399" />
+      {stars}
+    </svg>
+  );
+}
+
 export function TrajectoriesBlock() {
   const [scenario, setScenario] = useState<ScenarioId>("baseline");
   const [highlight, setHighlight] = useState<CountryCode | null>(null);
