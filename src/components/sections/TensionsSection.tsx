@@ -99,7 +99,7 @@ export function TensionsSection() {
       </div>
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
-        <DialogContent className="max-w-2xl rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
+        <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
           {active && (
             <div className="p-8 md:p-10">
               <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
@@ -115,8 +115,15 @@ export function TensionsSection() {
                   {active.consequence}
                 </DialogDescription>
               </DialogHeader>
-              <div className="has-dropcap mt-6">
-                <p className="prose-body">{active.body}</p>
+              <div className="mt-8 space-y-5">
+                {active.body.map((para, i) => (
+                  <p
+                    key={i}
+                    className={i === 0 ? "prose-body has-dropcap" : "prose-body"}
+                  >
+                    {para}
+                  </p>
+                ))}
               </div>
             </div>
           )}
