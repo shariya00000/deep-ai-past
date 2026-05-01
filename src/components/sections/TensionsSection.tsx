@@ -12,7 +12,8 @@ interface Case {
   dates: string;
   title: string;
   consequence: string;
-  body: string;
+  /** Full writeup. Each string renders as a separate paragraph. */
+  body: string[];
 }
 
 const CASES: Case[] = [
@@ -20,31 +21,43 @@ const CASES: Case[] = [
     dates: "17th–19th c.",
     title: "British & Dutch East India Companies",
     consequence: "The state creates a private actor and loses control of it.",
-    body:
-      "Placeholder body text. The chartered companies began as instruments of state mercantile policy and ended up wielding sovereign powers — raising armies, governing territories, and dictating foreign policy. Replace with full case description.",
+    body: [
+      // TODO: Replace with full writeup. Each array entry is one paragraph.
+      "TODO — write the full case study for the British & Dutch East India Companies here. The chartered companies began as instruments of state mercantile policy and ended up wielding sovereign powers — raising armies, governing territories, and dictating foreign policy.",
+      "TODO — second paragraph. Add as many paragraphs as you like by appending strings to this array.",
+    ],
   },
   {
     dates: "1850s–1945",
     title: "Krupp and the German Military State",
     consequence: "Mutual capture without meaningful accountability.",
-    body:
-      "Placeholder body text. Krupp and the Prussian-then-German state grew so entwined that neither could discipline the other; the firm shaped procurement while the state shielded the firm. Replace with full case description.",
+    body: [
+      // TODO: Replace with full writeup.
+      "TODO — write the full case study for Krupp and the German military state here. Krupp and the Prussian-then-German state grew so entwined that neither could discipline the other; the firm shaped procurement while the state shielded the firm.",
+      "TODO — second paragraph.",
+    ],
   },
   {
     dates: "1870–1911",
     title: "Standard Oil and the United States Government",
     consequence:
       "The state tolerates a private monopoly until strategic dependency threatens security.",
-    body:
-      "Placeholder body text. For four decades Washington tolerated Standard Oil's vertical dominance; only when oil became a strategic commodity did antitrust become a national-security project. Replace with full case description.",
+    body: [
+      // TODO: Replace with full writeup.
+      "TODO — write the full case study for Standard Oil and the United States here. For four decades Washington tolerated Standard Oil's vertical dominance; only when oil became a strategic commodity did antitrust become a national-security project.",
+      "TODO — second paragraph.",
+    ],
   },
   {
     dates: "1880s–1945",
     title: "Zaibatsu and Imperial Japan",
     consequence:
       "A private actor's commercial interests become the de facto driver of state grand strategy.",
-    body:
-      "Placeholder body text. The great industrial-financial combines of Meiji and Showa Japan did not merely serve imperial expansion — their resource needs increasingly defined what expansion was for. Replace with full case description.",
+    body: [
+      // TODO: Replace with full writeup.
+      "TODO — write the full case study for the Zaibatsu and Imperial Japan here. The great industrial-financial combines of Meiji and Showa Japan did not merely serve imperial expansion — their resource needs increasingly defined what expansion was for.",
+      "TODO — second paragraph.",
+    ],
   },
 ];
 
@@ -86,7 +99,7 @@ export function TensionsSection() {
       </div>
 
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
-        <DialogContent className="max-w-2xl rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
+        <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
           {active && (
             <div className="p-8 md:p-10">
               <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
@@ -102,8 +115,15 @@ export function TensionsSection() {
                   {active.consequence}
                 </DialogDescription>
               </DialogHeader>
-              <div className="has-dropcap mt-6">
-                <p className="prose-body">{active.body}</p>
+              <div className="mt-8 space-y-5">
+                {active.body.map((para, i) => (
+                  <p
+                    key={i}
+                    className={i === 0 ? "prose-body has-dropcap" : "prose-body"}
+                  >
+                    {para}
+                  </p>
+                ))}
               </div>
             </div>
           )}
