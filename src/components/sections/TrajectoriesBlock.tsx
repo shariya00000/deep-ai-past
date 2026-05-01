@@ -292,8 +292,8 @@ export function TrajectoriesBlock() {
       <div ref={liveRef} aria-live="polite" className="sr-only" />
 
       {/* A. Scenario selector */}
-      <div className="mb-10 grid grid-cols-2 border border-[color:var(--accent)]/40 md:grid-cols-4">
-        {SCENARIOS.map((s, i) => {
+      <div className="mb-10 grid grid-cols-2 gap-2 md:grid-cols-4">
+        {SCENARIOS.map((s) => {
           const active = s.id === scenario;
           return (
             <button
@@ -302,14 +302,16 @@ export function TrajectoriesBlock() {
               onClick={() => setScenario(s.id)}
               aria-pressed={active}
               className={[
-                "px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors",
-                i > 0 ? "md:border-l border-[color:var(--accent)]/40" : "",
-                i % 2 === 1 ? "border-l md:border-l border-[color:var(--accent)]/40" : "",
-                i >= 2 ? "border-t md:border-t-0 border-[color:var(--accent)]/40" : "",
+                "border px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] transition-all",
                 active
-                  ? "bg-[color:var(--accent)]/10 text-[color:var(--accent)]"
-                  : "text-[color:var(--ink-2)]/70 hover:text-[color:var(--ink)]",
+                  ? "border-[color:var(--accent)] text-[color:var(--accent)]"
+                  : "border-[color:var(--accent)]/25 text-[color:var(--ink)]/50 hover:text-[color:var(--ink)]/80 hover:border-[color:var(--accent)]/50",
               ].join(" ")}
+              style={
+                active
+                  ? { boxShadow: "inset 0 0 24px color-mix(in oklab, var(--accent) 5%, transparent)" }
+                  : undefined
+              }
             >
               {s.label}
             </button>
@@ -317,118 +319,232 @@ export function TrajectoriesBlock() {
         })}
       </div>
 
-      {/* B. Matrix */}
-      <div className="mx-auto w-full" style={{ maxWidth: 720 }}>
-        <div className="relative" style={{ aspectRatio: "1 / 1" }}>
-          {/* Axis label top-right corners (multilateralism gradient hints) */}
-          <div className="pointer-events-none absolute inset-0">
-            {/* Faint horizontal bands */}
-            <div className="absolute inset-x-0 top-0 h-1/3" style={{ background: "linear-gradient(to bottom, color-mix(in oklab, var(--accent) 6%, transparent), transparent)" }} />
-            <div className="absolute inset-x-0 bottom-0 h-1/3" style={{ background: "linear-gradient(to top, color-mix(in oklab, var(--accent) 6%, transparent), transparent)" }} />
-            <span className="absolute right-2 top-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--accent)]/40">Multilateralism</span>
-            <span className="absolute right-2 top-1/2 -translate-y-1/2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--accent)]/30">Alliances</span>
-            <span className="absolute right-2 bottom-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--accent)]/40">Isolationism</span>
+      {/* B. Matrix with reserved 80px outer margin for axis labels */}
+      <div className="mx-auto w-full" style={{ maxWidth: 720 + 160 }}>
+        <div className="relative" style={{ padding: 80 }}>
+          {/* Top axis label */}
+          <div
+            className="absolute left-0 right-0 text-center font-mono uppercase text-[color:var(--accent)]"
+            style={{ top: 32, fontSize: 12, letterSpacing: "0.15em", opacity: 0.85 }}
+          >
+            MULTILATERALISM ↑
+          </div>
+          {/* Bottom axis label */}
+          <div
+            className="absolute left-0 right-0 text-center font-mono uppercase text-[color:var(--accent)]"
+            style={{ bottom: 32, fontSize: 12, letterSpacing: "0.15em", opacity: 0.85 }}
+          >
+            ↓ ISOLATIONISM
+          </div>
+          {/* Left axis label */}
+          <div
+            className="absolute font-mono uppercase text-[color:var(--accent)] whitespace-nowrap"
+            style={{
+              left: 32,
+              top: "50%",
+              transform: "translateY(-50%) rotate(-90deg)",
+              transformOrigin: "center",
+              fontSize: 12,
+              letterSpacing: "0.15em",
+              opacity: 0.85,
+            }}
+          >
+            ← NATIONALISATION
+          </div>
+          {/* Right axis label */}
+          <div
+            className="absolute font-mono uppercase text-[color:var(--accent)] whitespace-nowrap"
+            style={{
+              right: 32,
+              top: "50%",
+              transform: "translateY(-50%) rotate(90deg)",
+              transformOrigin: "center",
+              fontSize: 12,
+              letterSpacing: "0.15em",
+              opacity: 0.85,
+            }}
+          >
+            ← STATE CAPTURE
           </div>
 
-          {/* Archetype zone radial washes */}
-          <div className="pointer-events-none absolute inset-0">
-            {ZONES.map((z) => (
-              <div
-                key={z.name}
-                className="absolute"
-                style={{
-                  left: `${z.x}%`,
-                  top: `${100 - z.y}%`,
-                  width: "55%",
-                  height: "55%",
-                  transform: "translate(-50%, -50%)",
-                  background: `radial-gradient(circle at center, color-mix(in oklab, var(--accent) 18%, transparent) 0%, transparent 70%)`,
-                }}
-              />
-            ))}
-            {ZONES.map((z) => (
-              <span
-                key={`l-${z.name}`}
-                className="absolute font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap"
-                style={{ left: `${z.x}%`, top: `${100 - z.y}%`, opacity: 0.18 }}
-              >
-                {z.name}
-              </span>
-            ))}
+          {/* Plot area */}
+          <div className="relative" style={{ aspectRatio: "1 / 1" }}>
+            {/* Border */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{ border: "1px solid color-mix(in oklab, var(--accent) 25%, transparent)" }}
+            />
+
+            {/* Archetype radial washes (atmosphere only) */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              {ZONES.map((z) => (
+                <div
+                  key={z.name}
+                  className="absolute"
+                  style={{
+                    left: `${z.x}%`,
+                    top: `${100 - z.y}%`,
+                    width: "55%",
+                    height: "55%",
+                    transform: "translate(-50%, -50%)",
+                    background:
+                      "radial-gradient(circle at center, color-mix(in oklab, var(--accent) 12%, transparent) 0%, transparent 70%)",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* 4x4 dotted grid */}
+            <div className="pointer-events-none absolute inset-0" style={{ opacity: 0.08 }}>
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`v-${p}`}
+                  className="absolute top-0 bottom-0"
+                  style={{
+                    left: `${p}%`,
+                    width: 1,
+                    backgroundImage:
+                      "linear-gradient(to bottom, var(--accent) 50%, transparent 50%)",
+                    backgroundSize: "1px 4px",
+                  }}
+                />
+              ))}
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`h-${p}`}
+                  className="absolute left-0 right-0"
+                  style={{
+                    top: `${p}%`,
+                    height: 1,
+                    backgroundImage:
+                      "linear-gradient(to right, var(--accent) 50%, transparent 50%)",
+                    backgroundSize: "4px 1px",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Crosshair */}
+            <div className="pointer-events-none absolute inset-0" style={{ opacity: 0.15 }}>
+              <div className="absolute left-0 right-0 top-1/2 h-px bg-[color:var(--accent)]" />
+              <div className="absolute top-0 bottom-0 left-1/2 w-px bg-[color:var(--accent)]" />
+            </div>
+
+            {/* Tick marks at 25/50/75 */}
+            <div className="pointer-events-none absolute inset-0">
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`tx-${p}`}
+                  className="absolute bg-[color:var(--accent)]"
+                  style={{ left: `${p}%`, top: 0, width: 1, height: 3, opacity: 0.6 }}
+                />
+              ))}
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`tx2-${p}`}
+                  className="absolute bg-[color:var(--accent)]"
+                  style={{ left: `${p}%`, bottom: 0, width: 1, height: 3, opacity: 0.6 }}
+                />
+              ))}
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`ty-${p}`}
+                  className="absolute bg-[color:var(--accent)]"
+                  style={{ top: `${p}%`, left: 0, height: 1, width: 3, opacity: 0.6 }}
+                />
+              ))}
+              {[25, 50, 75].map((p) => (
+                <div
+                  key={`ty2-${p}`}
+                  className="absolute bg-[color:var(--accent)]"
+                  style={{ top: `${p}%`, right: 0, height: 1, width: 3, opacity: 0.6 }}
+                />
+              ))}
+            </div>
+
+            {/* Trajectory lines (behind markers) */}
+            {scenario !== "baseline" && (
+              <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
+                <defs>
+                  <marker
+                    id="traj-arrow"
+                    viewBox="0 0 10 10"
+                    refX="8"
+                    refY="5"
+                    markerWidth="6"
+                    markerHeight="6"
+                    orient="auto-start-reverse"
+                  >
+                    <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)" fillOpacity="0.6" />
+                  </marker>
+                </defs>
+                {(Object.keys(COUNTRIES) as CountryCode[]).map((code) => {
+                  const [bx, by] = baseline[code];
+                  const [nx, ny] = positions[code];
+                  return (
+                    <line
+                      key={code}
+                      x1={`${bx}%`}
+                      y1={`${100 - by}%`}
+                      x2={`${nx}%`}
+                      y2={`${100 - ny}%`}
+                      stroke="var(--accent)"
+                      strokeOpacity="0.35"
+                      strokeWidth="1"
+                      strokeDasharray="4 4"
+                      markerEnd="url(#traj-arrow)"
+                    />
+                  );
+                })}
+              </svg>
+            )}
+
+            {/* Flag markers */}
+            {(Object.keys(COUNTRIES) as CountryCode[]).map((code) => {
+              const meta = COUNTRIES[code];
+              const [x, y] = positions[code];
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => focusCountry(code)}
+                  aria-label={`Highlight ${meta.name} in ${content.topLabel}`}
+                  className="group absolute flex flex-col items-center transition-[left,top] duration-[600ms] ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
+                  style={{
+                    left: `${x}%`,
+                    top: `${100 - y}%`,
+                    transform: "translate(-50%, -50%)",
+                    cursor: "pointer",
+                  }}
+                >
+                  <div
+                    className="overflow-hidden transition-transform duration-150 ease-out group-hover:scale-110"
+                    style={{
+                      width: 36,
+                      height: 24,
+                      borderRadius: 4,
+                      border: "1.5px solid color-mix(in oklab, var(--accent) 60%, transparent)",
+                      boxShadow: "0 1px 2px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    <FlagSvg code={code} />
+                  </div>
+                  <span
+                    className="mt-[6px] font-mono text-[10px] uppercase text-[color:var(--accent)]"
+                    style={{ letterSpacing: "0.15em" }}
+                  >
+                    {code}
+                  </span>
+                  <style>{`
+                    .group:hover > div:first-child {
+                      border-color: var(--accent) !important;
+                    }
+                  `}</style>
+                </button>
+              );
+            })}
           </div>
-
-          {/* Crosshair */}
-          <div className="pointer-events-none absolute inset-0" style={{ opacity: 0.2 }}>
-            <div className="absolute left-0 right-0 top-1/2 h-px bg-[color:var(--accent)]" />
-            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-[color:var(--accent)]" />
-          </div>
-
-          {/* Border frame */}
-          <div className="pointer-events-none absolute inset-0 border border-[color:var(--rule)]" />
-
-          {/* Trailing arrows from baseline (when not baseline) */}
-          {scenario !== "baseline" && (
-            <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-              {(Object.keys(COUNTRIES) as CountryCode[]).map((code) => {
-                const [bx, by] = baseline[code];
-                const [nx, ny] = positions[code];
-                return (
-                  <line
-                    key={code}
-                    x1={`${bx}%`}
-                    y1={`${100 - by}%`}
-                    x2={`${nx}%`}
-                    y2={`${100 - ny}%`}
-                    stroke="var(--accent)"
-                    strokeOpacity="0.3"
-                    strokeWidth="1"
-                    strokeDasharray="3 3"
-                  />
-                );
-              })}
-            </svg>
-          )}
-
-          {/* Country markers */}
-          {(Object.keys(COUNTRIES) as CountryCode[]).map((code) => {
-            const meta = COUNTRIES[code];
-            const [x, y] = positions[code];
-            return (
-              <button
-                key={code}
-                type="button"
-                onClick={() => focusCountry(code)}
-                aria-label={`Highlight ${meta.name} in ${content.topLabel}`}
-                className="group absolute flex items-center justify-center rounded-full transition-[left,top,transform] duration-[600ms] ease-in-out hover:scale-[1.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]"
-                style={{
-                  left: `${x}%`,
-                  top: `${100 - y}%`,
-                  width: 44,
-                  height: 44,
-                  transform: "translate(-50%, -50%)",
-                  background: "var(--paper)",
-                  border: `2px solid ${meta.ring}`,
-                  boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.12)",
-                }}
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.05em] text-[color:var(--accent)]">
-                  {code}
-                </span>
-              </button>
-            );
-          })}
         </div>
-
-        {/* Axis labels */}
-        <div className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
-          ← Nationalisation &nbsp; · &nbsp; State / Lab Balance &nbsp; · &nbsp; State Capture →
-        </div>
-        <div className="pointer-events-none absolute -ml-12 hidden md:block" />
-      </div>
-
-      {/* Vertical axis caption (below for mobile clarity) */}
-      <div className="mx-auto mt-2 max-w-[720px] text-center font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]/80">
-        Vertical axis: ← Isolationism · International Posture · Multilateralism →
       </div>
 
       {/* C. Description panel */}
