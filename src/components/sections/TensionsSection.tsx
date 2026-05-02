@@ -146,6 +146,23 @@ export function TensionsSection() {
                   </p>
                 ))}
               </div>
+              {active.sections?.map((s, si) => (
+                <div key={si} className="mt-10">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="h-px w-8 bg-[color:var(--accent)]" />
+                    <h4 className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
+                      {s.heading}
+                    </h4>
+                  </div>
+                  <div className="space-y-5">
+                    {s.body.map((para, i) => (
+                      <p key={i} className="prose-body">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </DialogContent>
