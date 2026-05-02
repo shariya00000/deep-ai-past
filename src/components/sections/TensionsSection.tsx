@@ -30,9 +30,8 @@ const CASES: Case[] = [
     title: "Krupp and the German Military State",
     consequence: "Mutual capture without meaningful accountability.",
     body: [
-      // TODO: Replace with full writeup.
-      "TODO — write the full case study for Krupp and the German military state here. Krupp and the Prussian-then-German state grew so entwined that neither could discipline the other; the firm shaped procurement while the state shielded the firm.",
-      "TODO — second paragraph.",
+      "Krupp began as a family-owned private steel manufacturing company in the mid-19th century, steadily growing into Europe’s largest private firm by the early 20th century. The firm cultivated a direct relationship with Wilhelm II, King of Prussia, supplying artillery that outperformed anything state arsenals could produce. This led the state-firm relationship to a mutual capture, as the Prussian military could not declare war without Krupp’s backing, but Krupp could not survive without state contracts. This dependency meant that neither party could credibly threaten the other. No German government could discipline Krupp without undermining its own military capacity. Resolution was only delivered externally, at the Nuremberg trials of 1947-1948, wherein allied tribunals treated the firm's directors as war criminals for exercising sovereign authority of directing resource extraction across occupied Europe without ever having been formally part of the state.",
+      "Today, a mutual capture between frontier AI labs and defense establishments is already forming (see Palantir’s accumulated influence inside the Pentagon). The Krupp case suggests that once this dependency reaches a certain depth, it will be increasingly difficult for a governance mechanism operating within normal politics to restore accountability.",
     ],
   },
   {
@@ -41,9 +40,8 @@ const CASES: Case[] = [
     consequence:
       "The state tolerates a private monopoly until strategic dependency threatens security.",
     body: [
-      // TODO: Replace with full writeup.
-      "TODO — write the full case study for Standard Oil and the United States here. For four decades Washington tolerated Standard Oil's vertical dominance; only when oil became a strategic commodity did antitrust become a national-security project.",
-      "TODO — second paragraph.",
+      "Founded in 1870 by John D. Rockefeller, Standard Oil controlled over 90% of US oil refining by the following decade through aggressive private accumulation that the state had not anticipated and consequently had no tools nor the intention to address. For the first two decades of Standard Oil’s dominance, the federal government largely left it alone, as abundant oil was serving the US industrial expansion and there was no pressing strategic reason to intervene. The security dimension became explicit in the 1890s as oil became essential to modernising naval and military competencies, and the US government realised it was strategically dependent on a single private firm for fuel supply. The state acted in 1906, filing the Sherman Antitrust Act, met with aggressive pushback by Standard Oil for five years, with Rockefeller publicly dismissing the proceedings as “government overreach into legitimate business”.",
+      "The structural dependence of the US government on its private companies for national security objectives shapes the pattern that is the most direct parallel to the current AI moment: the state tolerates and implicitly benefits from private concentration, until its structured dependency on the private is revealed. The state is then faced with a private actor with enough accumulated power to contest the sovereign’s attempt to reassert control on its own terms and timeline.",
     ],
   },
   {
@@ -52,9 +50,8 @@ const CASES: Case[] = [
     consequence:
       "A private actor's commercial interests become the de facto driver of state grand strategy.",
     body: [
-      // TODO: Replace with full writeup.
-      "TODO — write the full case study for the Zaibatsu and Imperial Japan here. The great industrial-financial combines of Meiji and Showa Japan did not merely serve imperial expansion — their resource needs increasingly defined what expansion was for.",
-      "TODO — second paragraph.",
+      "In the late 19th century, the government of Japan under the Meiji dynasty sold state-owned enterprises off at below market prices, creating private conglomerates (Zaibatsu). The ‘Big Three’ Zaibatsu: Mitsubishi, Mitsui, Sumitomo, were structurally dependent on state favouritism and institutionally aligned with imperial expansion from the outset (similar to the EIC/VOC). By the 1930s, Zaibatsu banks were financing colonial infrastructure, and Zaibatsu industrial capacity was directing Japanese military expansion into Manchuria. This direction is where the key divergence between the aforementioned Companies lies: the state was not driving military expansion, rather the firms needed new markets and the military followed, rationalising the economic logic the Zaibatsu had already established. The private commercial success of the Zaibatsu had become so politically indispensable that the sovereign’s strategic priorities were quasi-reorganised around the firm’s interests rather than the other way around.",
+      "This case serves as a potential trajectory of accumulated dependency on frontier AI, as will be explored below. The inversion does not require dramatic confrontation, it can happen slowly, until private commercial logic has so thoroughly shaped state strategic priorities that the question of policy direction no longer has a clear answer.",
     ],
   },
 ];
