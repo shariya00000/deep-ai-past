@@ -17,7 +17,7 @@ const COUNTRIES: Record<CountryCode, CountryMeta> = {
 };
 
 const SCENARIOS: { id: ScenarioId; label: string }[] = [
-  { id: "baseline", label: "Baseline · 2026" },
+  { id: "baseline", label: "TODAY ◼ HERE" },
   { id: "shock1", label: "Shock 01 · Terrorism" },
   { id: "shock2", label: "Shock 02 · Military" },
   { id: "shock3", label: "Shock 03 · Economic" },
@@ -48,7 +48,7 @@ interface ScenarioContent {
 const CONTENT: Record<ScenarioId, ScenarioContent> = {
   baseline: {
     id: "baseline",
-    topLabel: "Baseline · 2026",
+    topLabel: "TODAY ◼ HERE",
     kicker:
       "The four current equilibria, before any shock arrives. Each state already sits at a different point on the map — China embedded in the supply chain, the United States negotiating a hybrid, Israel fused with its security apparatus, the EU exporting norms it cannot enforce.",
     countries: [
