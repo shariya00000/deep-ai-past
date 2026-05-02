@@ -1,14 +1,14 @@
 import { Section } from "./Section";
 
 const ENTRIES = [
-  { name: "Domestication of plants", year: "c. 9000 BCE", numericYear: -9000 },
-  { name: "Water wheel", year: "1st c. BCE", numericYear: -50 },
-  { name: "Printing press", year: "c. 1440", numericYear: 1440 },
-  { name: "Steam engine", year: "c. 1760", numericYear: 1760 },
-  { name: "Electricity", year: "c. 1870", numericYear: 1870 },
-  { name: "Internal combustion engine", year: "c. 1885", numericYear: 1885 },
-  { name: "The internet", year: "c. 1969", numericYear: 1969 },
-  { name: "Artificial intelligence", year: "c. 2020s", numericYear: 2025 },
+  { name: "Domestication of plants", year: "c. 9000 BCE", numericYear: -9000, marker: "c. 9000 BC" },
+  { name: "Water wheel", year: "1st c. BCE", numericYear: -50, marker: "1st c. BCE" },
+  { name: "Printing press", year: "c. 1440", numericYear: 1440, marker: "1440s" },
+  { name: "Steam engine", year: "c. 1760", numericYear: 1760, marker: "1769" },
+  { name: "Electricity", year: "c. 1870", numericYear: 1870, marker: "c. 1880" },
+  { name: "Internal combustion engine", year: "c. 1885", numericYear: 1885, marker: "1885" },
+  { name: "The internet", year: "c. 1969", numericYear: 1969, marker: "1969" },
+  { name: "Artificial intelligence", year: "c. 2020s", numericYear: 2025, marker: "TODAY" },
 ];
 
 export function GptsTimelineSection() {
@@ -87,7 +87,7 @@ export function GptsTimelineSection() {
                         {e.name}
                       </div>
                       <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-[color:var(--ink-mute)]">
-                        № {String(i + 1).padStart(2, "0")}
+                        {e.marker}
                         {isAI && (
                           <span className="ml-2 text-[color:var(--accent)]">
                             ◼ here
