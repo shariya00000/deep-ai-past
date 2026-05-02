@@ -89,8 +89,8 @@ export function TensionsSection() {
   return (
     <Section
       label="§ 03 / Historical precedents"
-      heading="State and private power: four case files."
-      standfirst="Throughout history, state-private tensions have manifested in differing ways, leading to different consequences. Four files, four different failure modes."
+      heading="State and private power: five case files."
+      standfirst="Throughout history, state-private tensions have manifested in differing ways, leading to different consequences. Five files, five different failure modes."
       fullBleed
     >
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
