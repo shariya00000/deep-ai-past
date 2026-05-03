@@ -105,9 +105,6 @@ export function TensionsSection() {
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                 Case 0{i + 1} · {c.dates}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
-                open file →
-              </span>
             </div>
             <h3 className="text-2xl leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl font-medium">
               {c.title}

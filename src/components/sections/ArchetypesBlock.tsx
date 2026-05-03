@@ -157,9 +157,6 @@ export function ArchetypesBlock() {
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                   Archetype {a.num}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
-                  open file →
-                </span>
               </div>
               <h4 className="text-2xl leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl font-medium">
                 {a.name}
