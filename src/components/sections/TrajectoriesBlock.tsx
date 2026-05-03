@@ -275,11 +275,11 @@ export function TrajectoriesBlock() {
     <div className="mt-24">
       {/* 5.3 sub-header */}
       <div className="mb-5 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
-        <span>5.3 / Where each state lands. Potential Trajectories</span>
+        <span>5.3 / Where each state lands</span>
         <span className="h-px flex-1 bg-[color:var(--rule)] opacity-40" />
       </div>
       <h3 className="mb-5 text-3xl leading-[1.05] tracking-[-0.025em] text-[color:var(--ink)] md:text-4xl font-medium">
-        Where each state lands. Potential Trajectories
+        Four Trajectories
       </h3>
       <div className="mb-12 max-w-[780px] space-y-4 font-serif text-base italic leading-snug text-[color:var(--ink-2)] md:text-lg">
         <p>
