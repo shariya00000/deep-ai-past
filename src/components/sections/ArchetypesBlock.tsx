@@ -137,10 +137,9 @@ export function ArchetypesBlock() {
       </h3>
 
       <p className="mb-10 max-w-[720px] font-serif text-base italic leading-snug text-[color:var(--ink-2)] md:text-lg">
-        Each of the three shocks would generate intense political pressure on governments to act.
-        But the path each state takes is not predetermined — it is shaped by political economy,
-        ideology, and history. The four archetypes below map the policy responses we judge most
-        plausible: the menu from which real-world reactions will be drawn, mixed, and compromised.
+        What would the consequences of the three shocks be? The archetypes below outline four
+        plausible policy paths, representing a menu of responses that will be combined and adapted
+        in practice.
       </p>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
