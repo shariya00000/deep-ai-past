@@ -275,19 +275,27 @@ export function TrajectoriesBlock() {
     <div className="mt-24">
       {/* 5.3 sub-header */}
       <div className="mb-5 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
-        <span>5.3 / Trajectories</span>
+        <span>5.3 / Where each state lands. Potential Trajectories</span>
         <span className="h-px flex-1 bg-[color:var(--rule)] opacity-40" />
       </div>
       <h3 className="mb-5 text-3xl leading-[1.05] tracking-[-0.025em] text-[color:var(--ink)] md:text-4xl font-medium">
-        Where each state lands.
+        Where each state lands. Potential Trajectories
       </h3>
-      <p className="mb-12 max-w-[780px] font-serif text-base italic leading-snug text-[color:var(--ink-2)] md:text-lg">
-        Each shock pushes states across two axes: how much they nationalise the labs, and how
-        willing they are to bind themselves to others. The matrix below maps the 2026 baseline and
-        how the four states are likely to move under each shock. Positions are analytical
-        judgements, not measurements — the value is in the directions of travel, not the precise
-        coordinates.
-      </p>
+      <div className="mb-12 max-w-[780px] space-y-4 font-serif text-base italic leading-snug text-[color:var(--ink-2)] md:text-lg">
+        <p>
+          Returning to the four states above, how might each respond to the three shocks? The
+          matrix below maps country trajectories along two axes. The horizontal axis runs from
+          nationalisation to state capture, reflecting the balance between private and state
+          power.
+        </p>
+        <p>
+          The vertical axis runs from isolationism to internationalisation, capturing how states
+          would position themselves geopolitically. Here, isolationism refers to more
+          inward-facing responses, while internationalisation includes not only bi- and
+          multilateral cooperation, but also alliance-building and expanded cross-border public
+          and private coordination within blocs.
+        </p>
+      </div>
 
       <div ref={liveRef} aria-live="polite" className="sr-only" />
 
@@ -368,7 +376,7 @@ export function TrajectoriesBlock() {
           </div>
 
           {/* Plot area */}
-          <div className="relative" style={{ aspectRatio: "1 / 1" }}>
+          <div className="relative" style={{ aspectRatio: "16 / 10" }}>
             {/* Border */}
             <div
               className="pointer-events-none absolute inset-0"
