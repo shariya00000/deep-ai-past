@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Section } from "./Section";
 
 const ENTRIES = [
@@ -15,8 +16,19 @@ export function GptsTimelineSection() {
   return (
     <Section
       label="§ 02 / The 24 GPTs in History"
-      heading="Eight technologies, eleven thousand years."
-      standfirst="Lipsey, Carlaw and Bekar count twenty-four general purpose technologies across the historical record. Below are the eight named explicitly in our analysis — from Neolithic agriculture to the machine-learning stack of the 2020s."
+      heading="24 technologies, eleven thousand years."
+      standfirst={
+        <>
+          Lipsey, Carlaw and Bekar count twenty-four general purpose
+          technologies across the historical record. Below are the eight named
+          explicitly in our analysis — from Neolithic agriculture to the
+          machine-learning stack of the 2020s.
+          <span className="mt-3 block not-italic font-sans text-sm text-[color:var(--ink-mute)]">
+            The eight shown here are those most relevant to the state–private
+            security argument developed in this project.
+          </span>
+        </>
+      }
       fullBleed
     >
       <div className="grid grid-cols-12 gap-6">
