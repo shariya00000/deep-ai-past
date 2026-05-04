@@ -1,4 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export function ConvergenceInterstitial() {
   const ref = useRef<HTMLDivElement>(null);
@@ -103,6 +110,41 @@ export function ConvergenceInterstitial() {
             AI is the first general purpose technology whose frontier is also
             a security asset. Industrial policy and grand strategy collapse
             into a single decision.
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="ml-3 inline-flex items-center gap-1 align-baseline font-mono text-[10px] not-italic uppercase tracking-[0.18em] text-[color:var(--accent)] hover:underline">
+                  Read more →
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl border-[color:var(--rule)] bg-[color:var(--paper)] text-[color:var(--ink)]">
+                <DialogHeader>
+                  <DialogTitle className="font-display text-2xl leading-tight tracking-[-0.01em]">
+                    The AI Power Paradox
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="prose-body text-[0.95rem] leading-[1.6] text-[color:var(--ink-2)]">
+                  <p>
+                    AI is the first strategically decisive GPT whose frontier
+                    sits outside the state. Its early foundations were DARPA
+                    funded, but transformers, scaling laws and Reinforcement
+                    Learning from Human Feedback (RLHF) were built in
+                    commercial labs with private capital. The 2025 US contracts
+                    with top AI companies, the launch of GenAI.mil, and project
+                    Thunderforge all show how the Pentagon is procuring from
+                    commercial frontier AI rather than building it. China's
+                    military-civil fusion doctrine institutionalizes spin-on
+                    as a strategy. These examples show how the state is now
+                    structurally downstream of a GPT, it neither produced it
+                    nor can quickly replicate it, therefore investing in
+                    Ruttan's 20th century pipeline. Bremmer and Suleyman
+                    (2023) call this the AI Power Paradox.
+                  </p>
+                </div>
+                <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
+                  Source · Bremmer & Suleyman (2023)
+                </div>
+              </DialogContent>
+            </Dialog>
           </p>
         </div>
       </div>
