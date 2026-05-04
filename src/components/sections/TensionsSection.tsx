@@ -209,16 +209,8 @@ export function TensionsSection() {
                   {active.consequence}
                 </DialogDescription>
               </DialogHeader>
-              <div className="mt-8 space-y-5">
-                {active.body.map((para, i) => (
-                  <p
-                    key={i}
-                    className={i === 0 ? "prose-body has-dropcap" : "prose-body"}
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
+              <div className="mt-8" />
+
               {active.sections?.map((s, si) => (
                 <div key={si} className="mt-10">
                   <div className="mb-4 flex items-center gap-3">
