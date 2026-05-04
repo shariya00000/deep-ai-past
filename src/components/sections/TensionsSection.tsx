@@ -42,7 +42,7 @@ const CASES: Case[] = [
       {
         heading: "How it was resolved",
         body: [
-          "When the state finally (re)acted, it did so through the bluntest instrument available: full state takeover. However, in both cases, reassertion only became politically executable once the firms had collapsed under their own contradictions — the VOC bankrupted by corruption and overextension across too many Asian trade routes, while the EIC was destabilised by the Mutiny, which exposed how thoroughly the Company had mismanaged Indian governance and how little legitimacy its private administration commanded among its governed populace. Thus, nationalisation was less a governance choice than a last resort of the state.",
+          "When the state finally (re)acted by dissolving and nationalising the VOC in 1799 and absorbing the EIC into the crown following the Indian Sepoy Mutiny of 1857, it did so through the bluntest instrument available: full state takeover. However, in both cases, reassertion only became politically executable once the firms had collapsed under their own contradictions. The VOC was bankrupted by corruption and overextension across too many Asian trade routes, while the EIC was destabilised by the Mutiny, which exposed how thoroughly the Company had mismanaged Indian governance and how little legitimacy its private administration commanded among its governed populace. Thus, nationalisation was less a governance choice than a last resort of the state.",
         ],
       },
       {
@@ -55,25 +55,25 @@ const CASES: Case[] = [
   },
   {
     dates: "1850s–1945",
-    title: "Krupp and the German Military State",
+    title: "Krupp and the German military state",
     consequence: "Mutual capture without meaningful accountability.",
     sections: [
       {
         heading: "How the tension formed",
         body: [
-          "Krupp began as a family-owned private steel manufacturing company in the mid-19th century, steadily growing into Europe's largest private firm by the early 20th century. The firm cultivated a direct relationship with Wilhelm II, King of Prussia, supplying artillery that outperformed anything state arsenals could produce. This led the state-firm relationship to a mutual capture, as the Prussian military could not declare war without Krupp's backing, but Krupp could not survive without state contracts.",
+          "Krupp began as a family-owned private steel manufacturing company in the mid-19th century, steadily growing into Europe's largest private firm by the early 20th century. The firm cultivated a direct relationship with Wilhelm II, King of Prussia, supplying artillery that outperformed anything state arsenals could produce. This led the state-firm relationship to a mutual capture, as the Prussian military could not declare war without Krupp's backing, but Krupp could not survive without state contracts. This dependency meant that neither party could credibly threaten the other.",
         ],
       },
       {
         heading: "How it was resolved",
         body: [
-          "Resolution required total military defeat and external judicial intervention. At the Nuremberg trials of 1947–1948, allied tribunals treated the firm's directors as war criminals for exercising sovereign authority without ever having been formally part of the state.",
+          "Resolution to this tension was not a domestic governance instrument, it was only delivered externally, requiring total military defeat and external judicial intervention. At the Nuremberg trials of 1947–1948, allied tribunals treated the firm's directors as war criminals for exercising sovereign authority of directing resource extraction across occupied Europe without ever having been formally part of the state.",
         ],
       },
       {
         heading: "The parallel today",
         body: [
-          "Today, a mutual capture between frontier AI labs and defense establishments is already forming. The Krupp case suggests that once this dependency reaches a certain depth, it will be increasingly difficult for a governance mechanism operating within normal politics to restore accountability.",
+          "Today, a mutual capture between frontier AI labs and defence establishments is already forming. The Krupp case suggests that once this dependency reaches a certain depth, it will be increasingly difficult for a governance mechanism operating within normal politics to restore accountability.",
         ],
       },
     ],
@@ -87,19 +87,19 @@ const CASES: Case[] = [
       {
         heading: "How the tension formed",
         body: [
-          "Founded in 1870 by John D. Rockefeller, Standard Oil controlled over 90% of US oil refining by the following decade. For the first two decades of its dominance, the federal government largely left it alone. The security dimension became explicit in the 1890s as oil became essential to modernising naval and military competencies, and the US government realised it was strategically dependent on a single private firm for fuel supply.",
+          "Founded in 1870 by John D. Rockefeller, Standard Oil controlled over 90% of US oil refining by the following decade through aggressive private accumulation that the state had not anticipated and consequently had no tools nor intentions to address. For the first two decades of Standard Oil's dominance, the federal government largely left it alone, as abundant oil was serving the US industrial expansion and there was no pressing strategic reason to intervene. The security dimension became explicit in the 1890s as oil became essential to modernising naval and military competencies, and the US government realised it was strategically dependent on a single private firm for fuel supply.",
         ],
       },
       {
         heading: "How it was resolved",
         body: [
-          "The state acted in 1906, filing the Sherman Antitrust Act, met with aggressive pushback by Standard Oil for five years, with Rockefeller publicly dismissing the proceedings as \"government overreach into legitimate business\". The formal conclusion came in 1911 with a breakup, but successor companies retained the same infrastructure, personnel, and market relationships. Hence, antitrust as the state's chosen tool touched on the legality of the problem without addressing the structural substance.",
+          "The state acted in 1906, filing the Sherman Antitrust Act, met with aggressive pushback by Standard Oil for five years, with Rockefeller publicly dismissing the proceedings as \"government overreach into legitimate business\". The formal conclusion came in 1911 with a breakup, but successor companies retained the same infrastructure, personnel, and market relationships, continuing to shape US foreign and military policy for subsequent decades. Hence, antitrust as the state's chosen tool touched on the legality of the problem without addressing the structural substance.",
         ],
       },
       {
         heading: "The parallel today",
         body: [
-          "The state tolerates and implicitly benefits from private concentration, until its structural dependency on the private is revealed. The state is then faced with a private actor with enough accumulated power to contest the sovereign's attempt to reassert control on its own terms and timeline.",
+          "The structural dependence of the US government on its private companies for national security objectives shapes the pattern that is the most direct parallel to the current AI moment: the state tolerates and implicitly benefits from private concentration, until its structured dependency on the private is revealed. The state is then faced with a private actor with enough accumulated power to contest the sovereign's attempt to reassert control on its own terms and timeline.",
         ],
       },
     ],
@@ -113,19 +113,19 @@ const CASES: Case[] = [
       {
         heading: "How the tension formed",
         body: [
-          "In the late 19th century, the government of Japan under the Meiji dynasty sold state-owned enterprises off at below market prices, creating private conglomerates (Zaibatsu). By the 1930s, Zaibatsu banks were financing colonial infrastructure, and Zaibatsu industrial capacity was directing Japanese military expansion into Manchuria. The state was not driving military expansion — the firms needed new markets and the military followed, rationalising the economic logic the Zaibatsu had already established.",
+          "In the late 19th century, the government of Japan under the Meiji dynasty sold state-owned enterprises off at below market prices, creating private conglomerates (Zaibatsu). The Big Three Zaibatsu — Mitsubishi, Mitsui, Sumitomo — were structurally dependent on state favouritism and institutionally aligned with imperial expansion from the outset. By the 1930s, Zaibatsu banks were financing colonial infrastructure, and Zaibatsu industrial capacity was directing Japanese military expansion into Manchuria. The state was not driving military expansion, rather the firms needed new markets and the military followed, rationalising the economic logic the Zaibatsu had already established.",
         ],
       },
       {
         heading: "How it was resolved",
         body: [
-          "The US occupation attempted resolution through imposed dissolution after 1945, but the Zaibatsu reconstituted almost immediately as Keiretsu, demonstrating that structural dissolution without addressing underlying economic incentives achieves less than it appears.",
+          "The US occupation attempted resolution through imposed dissolution after 1945, but the Zaibatsu reconstituted almost immediately as Keiretsu, with looser networks, but retaining the same personnel, banking relationships, and state-adjacent structures, demonstrating that structural dissolution without addressing underlying economic incentives achieves less than it appears.",
         ],
       },
       {
         heading: "The parallel today",
         body: [
-          "The inversion does not require dramatic confrontation: it can happen slowly, until private commercial logic has so thoroughly shaped state strategic priorities that the question of policy direction no longer has a clear answer.",
+          "This case serves as a potential trajectory of accumulated dependency on frontier AI. The inversion does not require dramatic confrontation, it can happen slowly, until private commercial logic has so thoroughly shaped state strategic priorities that the question of policy direction no longer has a clear answer.",
         ],
       },
     ],
@@ -139,19 +139,19 @@ const CASES: Case[] = [
       {
         heading: "The structural difference",
         body: [
-          "Lockheed Martin has supplied the core of American military capability for decades without generating the sovereignty problems described. Lockheed builds to state specification under classified contract, retaining no independent deployment capacity, and deriving almost all revenue from state procurement. The firm cannot fly an F-35 into combat independently or credibly threaten to walk away from the relationship without destroying its own business model. Frontier AI labs invert this structure: they build to their own specification, retain ownership of the underlying model weights, generate sufficient commercial revenue to operate independently of state contracts, and produce a GPT the state cannot easily substitute or replicate.",
+          "Lockheed Martin has supplied the core of American military capability for decades without generating the sovereignty problems described. The reason is economic: LM builds to state specification under classified contract, retaining no independent deployment capacity, and deriving almost all revenue from state procurement. The firm cannot fly an F-35 into combat independently or credibly threaten to walk away from the relationship without destroying its own business model. Frontier AI labs invert this structure. They build to their own specification, retain ownership of the underlying model weights, generate sufficient commercial revenue to operate independently of state contracts, and produce a GPT the state cannot easily substitute or replicate.",
         ],
       },
       {
         heading: "The funding difference",
         body: [
-          "Lockheed's capital structure reinforces this dependency: it is funded almost entirely through state contracts. Frontier AI labs are capitalized through venture capital, private equity, and diversified commercial revenue streams structurally independent of state procurement. Threatening to withhold contracts from Lockheed is an existential threat to the firm, whereas the same threat to Anthropic is a reputational and commercial inconvenience that the firm's private capital base can absorb in its margins.",
+          "LM's capital structure reinforces this dependency: it is funded almost entirely through state contracts; its financial survival is contingent on maintaining the state's approval. Frontier AI labs are capitalised through venture capital, private equity, and diversified commercial revenue streams that are structurally independent of state procurement. Anthropic raised $30 billion in a Series G round in February 2026 from a global consortium of private investors; OpenAI's commercial revenue from consumer and enterprise subscriptions runs into the billions independently of any government contract. Threatening to withhold contracts from Lockheed is an existential threat to the firm, whereas the same threat to Anthropic is a reputational and commercial inconvenience that the firm's private capital base can absorb in its margins.",
         ],
       },
       {
         heading: "The structural consequence",
         body: [
-          "With AI, the economic structure of the industry makes private accumulation of power not an accident of history but a default condition, for which the resolution mechanisms available to prior sovereigns have each already demonstrated their limits.",
+          "The historical cases describe situations where private actors accumulated power the state had not anticipated. With AI, the economic structure of the industry makes this accumulation not an accident of history but a default condition, and one for which the resolution mechanisms available to prior sovereigns have each already demonstrated their limits.",
         ],
       },
     ],
