@@ -19,25 +19,29 @@ export function GptsTimelineSection() {
       heading="24 technologies, eleven thousand years."
       standfirst={
         <>
-          Lipsey, Carlaw and Bekar count twenty-four general purpose
-          technologies across the historical record. Below are the eight named
-          explicitly in our analysis — from Neolithic agriculture to the
-          machine-learning stack of the 2020s.
-          <span className="mt-3 block not-italic font-sans text-sm text-[color:var(--ink-mute)]">
-            The eight shown here are those most relevant to the state–private
-            security argument developed in this project.
-          </span>
+          General Purpose Technologies (GPTs) are the kinds of technological
+          advancements that occasionally transform society's economic, social,
+          and political structure.
         </>
       }
       fullBleed
     >
       <div className="grid grid-cols-12 gap-6">
-        <p className="prose-body col-span-12 md:col-span-7">
-          The pattern worth noticing is not the list itself but the gaps between
-          entries. Each GPT is separated by decades or centuries, and in the
-          twentieth century most of them emerged from — or were decisively
-          shaped by — state procurement.
-        </p>
+        <div className="col-span-12 md:col-span-7">
+          <p className="prose-body">
+            They are characterized by their pervasiveness across sectors, their
+            continuous scope for technical improvement, and their innovative
+            complementarities that raise R&amp;D productivity in downstream
+            industries.
+          </p>
+          <hr className="my-8 border-t border-[color:var(--rule)]/40" />
+          <p className="prose-body">
+            GPTs must reorganize the economy around themselves, not just adding
+            to it. This makes them rare by essence and it's the reason why many
+            economists treat them as the principal engines behind long-term
+            growth.
+          </p>
+        </div>
         <aside className="col-span-12 font-sans text-xs leading-[1.4] text-[color:var(--ink-mute)] md:col-span-4 md:col-start-9 md:border-l md:border-l-[color:var(--rule)]/20 md:pl-5">
           <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink)]">
             Source
@@ -50,6 +54,13 @@ export function GptsTimelineSection() {
 
       {/* Timeline strip */}
       <div className="mt-16">
+        <p className="prose-body mb-8 max-w-3xl font-serif italic text-[color:var(--ink-2)]">
+          Lipsey, Carlaw and Bekar count twenty-four general purpose
+          technologies across the historical record. The eight shown here are
+          those most relevant to the state–private security argument developed
+          in this project.
+        </p>
+
         <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
           <span>Timeline · 9000 BCE — 2020s</span>
           <span className="hidden md:inline">scroll →</span>
@@ -122,65 +133,47 @@ export function GptsTimelineSection() {
 
 const PANELS = [
   {
-    kicker: "Panel 01 / Definition",
-    headline: "GPTs are rare technologies that reorganise the economy around themselves.",
-    body: (
-      <>
-        General Purpose Technologies (GPTs) are the kinds of technological
-        advancements that occasionally transform society's economic, social,
-        and political structure (Lipsey, Carlaw and Bekar, 2005). They are
-        characterized by their pervasiveness across sectors, their continuous
-        scope for technical improvement, and their innovative complementarities
-        that raise R&amp;D productivity in downstream industries (Bresnahan and
-        Trajtenberg, 1995). Lipsey, Carlaw and Bekar (2005) identify
-        twenty-four GPTs across history, among them the domestication of
-        plants, the water wheel, the printing press, the steam engine,
-        electricity, the internal combustion engine, the computer, and the
-        internet. GPTs must reorganize the economy around themselves, not just
-        adding to it. This makes them rare by essence and it's the reason why
-        many economists treat them as the principal engines behind long-term
-        growth.
-      </>
-    ),
-    sources: "Lipsey, Carlaw & Bekar (2005); Bresnahan & Trajtenberg (1995).",
-  },
-  {
-    kicker: "Panel 02 / Spin-off & Spin-on",
+    kicker: "Panel 01 / Spin-off & Spin-on",
     headline: "Most twentieth-century GPTs were spin-offs from state procurement.",
     body: (
       <>
-        When describing the origin and effects of technologies, particularly
-        those developed following the rise of nation-states, and by extension
-        the divide of public–private, the terms <em>spin-on</em> and{" "}
-        <em>spin-off</em> appeared in the defense-innovation literature
-        (Molas-Gallart, 1997; Ruttan, 2006). A spin-off, in this sense, is a
-        technology developed under military or public-mission R&amp;D that
-        later migrates to civilian use (i.e.: semiconductors, GPS, jet engines,
-        the internet). A spin-on, on the other hand, is a commercially
-        developed technology absorbed into defense. Most twentieth century
-        GPTs are predominantly spin-offs. Ruttan identifies six whose
-        development was decisively shaped by US military procurement:
-        interchangeable parts, aircraft, nuclear energy, computers, the
-        internet and space.
+        <p>
+          When describing the origin and effects of technologies, particularly
+          those developed following the rise of nation-states, and by extension
+          the divide of public–private, the terms <em>spin-on</em> and{" "}
+          <em>spin-off</em> appeared in the defense-innovation literature.
+        </p>
+        <p className="mt-4">
+          A <strong>spin-off</strong>, in this sense, is a technology developed
+          under military or public-mission R&amp;D that later migrates to
+          civilian use (i.e.: semiconductors, GPS, jet engines, the internet).
+        </p>
+        <p className="mt-4">
+          A <strong>spin-on</strong>, on the other hand, is a commercially
+          developed technology absorbed into defense. Most twentieth century
+          GPTs are predominantly spin-offs. Ruttan identifies six whose
+          development was decisively shaped by US military procurement:
+          interchangeable parts, aircraft, nuclear energy, computers, the
+          internet and space.
+        </p>
       </>
     ),
     sources: "Molas-Gallart (1997); Ruttan (2006).",
   },
   {
-    kicker: "Panel 03 / AI as a GPT",
+    kicker: "Panel 02 / AI as a GPT",
     headline: "AI is a GPT — and an invention of a method of invention.",
     body: (
-      <>
+      <p>
         Artificial Intelligence (AI), specifically machine learning, and now
         foundation models, is widely regarded today as a GPT. It satisfies the
-        three criteria and, according to Cockburn et al., it adds a feature
-        none of its predecessors had. He describes it as an{" "}
-        <em>invention of a method of invention</em> (IMI), raising productivity
-        in the production of ideas themselves. Agrawal, Gans and Goldfarb
-        (2018) frame the underlying mechanism as a fall in the cost of
-        prediction, which pervades by that route rather than through a new
-        power source or communications medium.
-      </>
+        three criteria and adds a feature none of its predecessors had: it is
+        an <em>invention of a method of invention</em> (IMI), raising
+        productivity in the production of ideas themselves. The underlying
+        mechanism can be framed as a fall in the cost of prediction, which
+        pervades by that route rather than through a new power source or
+        communications medium.
+      </p>
     ),
     sources: "Cockburn, Henderson & Stern (2018); Agrawal, Gans & Goldfarb (2018).",
   },
@@ -217,9 +210,9 @@ function GptExplainer() {
           <h3 className="font-display text-2xl font-semibold leading-[1.15] tracking-[-0.01em] text-[color:var(--ink)] md:text-3xl">
             {panel.headline}
           </h3>
-          <p className="prose-body mt-6 text-[1.0625rem] leading-[1.6]">
+          <div className="prose-body mt-6 text-[1.0625rem] leading-[1.6]">
             {panel.body}
-          </p>
+          </div>
         </div>
         <aside className="col-span-12 font-sans text-xs leading-[1.4] text-[color:var(--ink-mute)] md:col-span-3 md:col-start-10 md:border-l md:border-l-[color:var(--rule)]/20 md:pl-5">
           <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink)]">
