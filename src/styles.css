@@ -126,7 +126,7 @@
   /* Editorial body text uses serif */
   .prose-body, .prose-body p {
     font-family: var(--font-serif);
-    font-size: 1.0625rem;
+    font-size: 0.96875rem;
     line-height: 1.6;
     color: var(--ink-2);
     hyphens: auto;
