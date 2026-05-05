@@ -128,7 +128,7 @@ const CASES: Case[] = [
       {
         heading: "How the tension formed",
         body: [
-          "In the late 19th century, the government of Japan under the Meiji dynasty sold state-owned enterprises off at below market prices, creating private conglomerates (Zaibatsu). The Big Three Zaibatsu — Mitsubishi, Mitsui, Sumitomo — were structurally dependent on state favouritism and institutionally aligned with imperial expansion from the outset. By the 1930s, Zaibatsu banks were financing colonial infrastructure, and Zaibatsu industrial capacity was directing Japanese military expansion into Manchuria. The state was not driving military expansion, rather the firms needed new markets and the military followed, rationalising the economic logic the Zaibatsu had already established.",
+          "In the late 19th century, the government of Japan under the Meiji dynasty sold state-owned enterprises off at below market prices, creating private conglomerates (Zaibatsu). The Big Three Zaibatsu: Mitsubishi, Mitsui, Sumitomo, were structurally dependent on state favouritism and institutionally aligned with imperial expansion from the outset. By the 1930s, Zaibatsu banks were financing colonial infrastructure, and Zaibatsu industrial capacity was directing Japanese military expansion into Manchuria. The state was not driving military expansion, rather the firms needed new markets and the military followed, rationalising the economic logic the Zaibatsu had already established.",
         ],
       },
       {
