@@ -7,6 +7,11 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import case01Img from "@/assets/case-01-eic.png";
+import case02Img from "@/assets/case-02-krupp.png";
+import case03Img from "@/assets/case-03-standard-oil.png";
+import case04Img from "@/assets/case-04-zaibatsu.png";
+import case05Img from "@/assets/case-05-lockheed.png";
 
 interface CaseSection {
   heading: string;
@@ -17,6 +22,8 @@ interface Case {
   dates: string;
   title: string;
   consequence: string;
+  image: string;
+  imageAlt: string;
   /** Sub-sections rendered with subheadings. */
   sections: CaseSection[];
 }
