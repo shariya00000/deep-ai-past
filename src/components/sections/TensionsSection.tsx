@@ -33,6 +33,8 @@ const CASES: Case[] = [
     dates: "17th–19th c.",
     title: "British & Dutch East India Companies",
     consequence: "The state creates a private actor and loses control of it.",
+    image: case01Img,
+    imageAlt: "19th-century painting of an East India Company ship at anchor.",
     sections: [
       {
         heading: "The delegation of sovereign power",
@@ -64,6 +66,8 @@ const CASES: Case[] = [
     dates: "1850s–1945",
     title: "Krupp and the German military state",
     consequence: "Mutual capture without meaningful accountability.",
+    image: case02Img,
+    imageAlt: "Historical photograph of a Krupp armaments factory floor.",
     sections: [
       {
         heading: "How the tension formed",
@@ -90,6 +94,8 @@ const CASES: Case[] = [
     title: "Standard Oil and the United States Government",
     consequence:
       "The state tolerates a private monopoly until strategic dependency threatens security objectives.",
+    image: case03Img,
+    imageAlt: "Period political cartoon depicting Standard Oil as an octopus.",
     sections: [
       {
         heading: "How the tension formed",
@@ -116,6 +122,8 @@ const CASES: Case[] = [
     title: "Zaibatsu and Imperial Japan",
     consequence:
       "A private actor's commercial interests become the de facto driver of state grand strategy.",
+    image: case04Img,
+    imageAlt: "Logos of the Big Three Zaibatsu: Mitsubishi, Mitsui, Sumitomo.",
     sections: [
       {
         heading: "How the tension formed",
@@ -142,6 +150,8 @@ const CASES: Case[] = [
     title: "Traditional security companies and states today",
     consequence:
       "State leverage persists where private actors depend on state contracts — and breaks down where they don't.",
+    image: case05Img,
+    imageAlt: "Lockheed Martin B-1 bomber surrounded by missile loadouts.",
     sections: [
       {
         heading: "The structural difference",
