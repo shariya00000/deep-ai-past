@@ -194,6 +194,14 @@ export function TensionsSection() {
             onClick={() => setOpenIdx(i)}
             className="group relative flex flex-col gap-5 border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-8 text-left transition-all duration-150 hover:-translate-y-0.5 hover:border-[color:var(--accent)] focus:outline-none focus:border-[color:var(--accent)] md:p-10"
           >
+            <div className="-mx-8 -mt-8 mb-2 aspect-[16/9] overflow-hidden border-b border-[color:var(--rule)] bg-[color:var(--paper)] md:-mx-10 md:-mt-10">
+              <img
+                src={c.image}
+                alt={c.imageAlt}
+                loading="lazy"
+                className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0"
+              />
+            </div>
             <div className="flex items-baseline justify-between gap-4">
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                 Case 0{i + 1} · {c.dates}
@@ -212,7 +220,15 @@ export function TensionsSection() {
       <Dialog open={openIdx !== null} onOpenChange={(o) => !o && setOpenIdx(null)}>
         <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto rounded-none border border-[color:var(--rule)] bg-[color:var(--paper-2)] p-0">
           {active && (
-            <div className="p-8 md:p-10">
+            <div>
+              <div className="aspect-[16/9] w-full overflow-hidden border-b border-[color:var(--rule)] bg-[color:var(--paper)]">
+                <img
+                  src={active.image}
+                  alt={active.imageAlt}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="p-8 md:p-10">
               <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--accent)]">
                 <span>§ 03 / Case 0{(openIdx ?? 0) + 1}</span>
                 <span className="h-px flex-1 bg-[color:var(--rule)] opacity-40" />
@@ -245,6 +261,7 @@ export function TensionsSection() {
                   </div>
                 </div>
               ))}
+              </div>
             </div>
           )}
         </DialogContent>
