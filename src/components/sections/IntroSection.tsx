@@ -1,3 +1,10 @@
+const NAV_LINKS = [
+  { href: "#section-02", label: "GPTs in History" },
+  { href: "#section-03", label: "Historical Precedents" },
+  { href: "#section-04", label: "National Cases" },
+  { href: "#section-05", label: "Scenarios" },
+];
+
 export function IntroSection() {
   return (
     <section className="w-full px-6 pb-20 pt-12 md:pb-32 md:pt-20">
@@ -10,52 +17,54 @@ export function IntroSection() {
 
         <div className="grid grid-cols-12 gap-6">
           <h1 className="col-span-12 text-5xl font-semibold leading-[0.98] tracking-[-0.025em] text-[color:var(--ink)] md:col-span-10 md:text-7xl lg:text-[88px]">
-            <span className="text-[color:var(--ink-mute)]/40 italic font-normal">
-              [headline coming soon]
-            </span>
+            Downstream of the Frontier
           </h1>
 
-          <p className="col-span-12 mt-2 font-serif text-xl italic leading-snug text-[color:var(--ink-2)] md:col-span-9 md:text-2xl">
-            Standfirst placeholder — the one-paragraph thesis of the essay sits
-            here, framed as a sharp claim about artificial intelligence as a
-            general purpose technology and the unstable politics around its
-            development.
+          <p className="col-span-12 mt-2 font-serif text-lg italic leading-snug text-[color:var(--ink-2)] md:col-span-9 md:text-xl">
+            Artificial intelligence is the first general purpose technology
+            whose frontier sits outside the state, and the first whose frontier
+            is also a security asset. How will this inversion transform the
+            tensions between sovereign authority and privately owned firms
+            regarding national security?
           </p>
 
-          <div className="col-span-12 mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-[color:var(--rule)] py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
-            <span>By [author]</span>
-            <span aria-hidden>·</span>
-            <span>~18 min read</span>
-            <span aria-hidden>·</span>
-            <span>4 sections</span>
-            <span aria-hidden>·</span>
-            <span>Working draft</span>
-          </div>
+          <nav className="col-span-12 mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-[color:var(--rule)] py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
+            <span className="text-[color:var(--ink)]">Jump to</span>
+            {NAV_LINKS.map((l, i) => (
+              <span key={l.href} className="flex items-center gap-x-6">
+                <span aria-hidden>·</span>
+                <a
+                  href={l.href}
+                  className="transition-colors hover:text-[color:var(--accent)]"
+                >
+                  {l.label}
+                </a>
+              </span>
+            ))}
+          </nav>
 
           <div className="col-span-12 mt-12 grid grid-cols-12 gap-6">
-            <div className="col-span-12 has-dropcap md:col-span-7">
+            <div className="col-span-12 has-dropcap md:col-span-9">
               <p className="prose-body">
-                Placeholder opening paragraph. The first move of the piece will
-                live here — establishing artificial intelligence as the latest
-                in a short list of general purpose technologies, then pivoting
-                to the political question that follows: who controls a
-                technology whose frontier is, by construction, a security
-                asset.
+                For most of the twentieth century, the technologies that
+                reshaped economies and won wars moved in one direction: funded
+                by the state, made strategically usable by the military, then
+                released downstream into civilian life. Artificial intelligence
+                has reversed this pattern. The Pentagon now buys frontier
+                models from companies it neither founded nor controls. China
+                has institutionalised the same dependency under a different
+                name.
               </p>
               <p className="prose-body mt-5">
-                A second placeholder paragraph to set rhythm and let you see the
-                drop cap, the body measure, and the way marginalia sits beside
-                the column on wider screens.
+                For the first time, a strategically decisive general purpose
+                technology has a privately held frontier, and national and
+                global security depend on it. This column explores the
+                national security tensions between the state and the private
+                firms at the frontier, through the historical precedents that
+                shaped it, the national cases that define it today, and the
+                scenarios that may decide it tomorrow.
               </p>
             </div>
-            <aside className="col-span-12 mt-2 border-t border-[color:var(--rule)]/30 pt-4 font-sans text-xs leading-[1.4] text-[color:var(--ink-mute)] md:col-span-4 md:col-start-9 md:mt-1 md:border-l md:border-t-0 md:border-l-[color:var(--rule)]/20 md:pl-5 md:pt-0">
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink)]">
-                On terms
-              </div>
-              Placeholder marginalia. Definitions, source notes, and asides
-              live in this rail. Replace with the working glossary or first
-              footnote.
-            </aside>
           </div>
         </div>
       </div>
