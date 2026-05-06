@@ -57,8 +57,12 @@ function Index() {
             More to come
           </div>
           <div className="col-span-6 md:col-span-4">
-            <div className="mb-2 text-[color:var(--ink)]">Status</div>
-            Working draft · 2026
+            <div className="mb-2 text-[color:var(--ink)]">Authors</div>
+            Aleksandra Majowka<br />
+            Abe de Ruijter<br />
+            Ram Erik Glomseth<br />
+            Shariya Ashraf<br />
+            Sebastian Ramirez Hernandez
           </div>
         </div>
       </footer>
