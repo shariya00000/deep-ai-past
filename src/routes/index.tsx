@@ -35,6 +35,7 @@ function Index() {
           </nav>
         </div>
       </header>
+      <ScrollProgress />
 
       <IntroSection />
       <div id="section-02"><GptsTimelineSection /></div>
