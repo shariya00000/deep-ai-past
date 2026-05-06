@@ -22,6 +22,7 @@ interface Case {
   dates: string;
   title: string;
   consequence: string;
+  hoverConsequence: string;
   image: string;
   imageAlt: string;
   /** Sub-sections rendered with subheadings. */
@@ -33,6 +34,8 @@ const CASES: Case[] = [
     dates: "17th–19th c.",
     title: "British & Dutch East India Companies",
     consequence: "The state creates a private actor and loses control of it.",
+    hoverConsequence:
+      "Creating conditions for private actors to scale a strategically critical capability produces governance instruments that become inadequate once the private company outgrows them.",
     image: case01Img,
     imageAlt: "19th-century painting of an East India Company ship at anchor.",
     sections: [
@@ -66,6 +69,8 @@ const CASES: Case[] = [
     dates: "1850s–1945",
     title: "Krupp and the German military state",
     consequence: "Mutual capture without meaningful accountability.",
+    hoverConsequence:
+      "Once mutual capture between a private firm and the state reaches sufficient depth, no governance mechanism operating within normal politics can restore accountability.",
     image: case02Img,
     imageAlt: "Historical photograph of a Krupp armaments factory floor.",
     sections: [
@@ -94,6 +99,8 @@ const CASES: Case[] = [
     title: "Standard Oil and the United States Government",
     consequence:
       "The state tolerates a private monopoly until strategic dependency threatens security objectives.",
+    hoverConsequence:
+      "The state tolerates and implicitly benefits from private concentration until its structural dependency is revealed, then faces a private actor with enough accumulated power to contest reassertion on its own terms.",
     image: case03Img,
     imageAlt: "Period political cartoon depicting Standard Oil as an octopus.",
     sections: [
@@ -122,6 +129,8 @@ const CASES: Case[] = [
     title: "Zaibatsu and Imperial Japan",
     consequence:
       "A private actor's commercial interests become the de facto driver of state grand strategy.",
+    hoverConsequence:
+      "Private commercial logic can so thoroughly shape state strategic priorities that the question of policy direction no longer has a clear answer.",
     image: case04Img,
     imageAlt: "Logos of the Big Three Zaibatsu: Mitsubishi, Mitsui, Sumitomo.",
     sections: [
@@ -150,6 +159,8 @@ const CASES: Case[] = [
     title: "Traditional security companies and states today",
     consequence:
       "State leverage persists where private actors depend on state contracts — and breaks down where they don't.",
+    hoverConsequence:
+      "With AI, the economic structure of the industry makes private accumulation of power not an accident of history but a default condition.",
     image: case05Img,
     imageAlt: "Lockheed Martin B-1 bomber surrounded by missile loadouts.",
     sections: [
@@ -210,9 +221,14 @@ export function TensionsSection() {
             <h3 className="text-2xl leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl font-medium">
               {c.title}
             </h3>
-            <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)]">
-              {c.consequence}
-            </p>
+            <div className="relative">
+              <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)] transition-opacity duration-300 group-hover:opacity-0">
+                {c.consequence}
+              </p>
+              <p className="pointer-events-none absolute inset-0 font-serif text-base italic leading-snug text-[color:var(--ink-2)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {c.hoverConsequence}
+              </p>
+            </div>
           </button>
         ))}
       </div>
