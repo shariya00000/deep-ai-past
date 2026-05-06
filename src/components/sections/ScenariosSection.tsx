@@ -219,13 +219,13 @@ export function ScenariosSection() {
       label="§ 05 / Scenarios"
       heading="When the equilibrium breaks."
       standfirst={
-        <>
+        <span className="text-base md:text-lg">
           § 04 described four current equilibria. This section forecasts how each could break.
           Three plausible shocks — a frontier-AI terrorist attack, a machine-speed military
           collapse, and an AI-driven economic rescue — are paired with four policy archetypes
           states could deploy in response. The matrix that follows is a reading of which path each
           state is most likely to take given its political economy, ideology, and history.
-        </>
+        </span>
       }
       fullBleed
     >
