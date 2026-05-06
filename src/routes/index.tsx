@@ -5,6 +5,7 @@ import { ConvergenceInterstitial } from "@/components/sections/ConvergenceInters
 import { TensionsSection } from "@/components/sections/TensionsSection";
 import { FlagsSection } from "@/components/sections/FlagsSection";
 import { ScenariosSection } from "@/components/sections/ScenariosSection";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export const Route = createFileRoute("/")({
   component: Index,
