@@ -22,6 +22,7 @@ interface Case {
   dates: string;
   title: string;
   consequence: string;
+  hoverConsequence: string;
   image: string;
   imageAlt: string;
   /** Sub-sections rendered with subheadings. */
