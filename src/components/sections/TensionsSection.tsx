@@ -221,9 +221,14 @@ export function TensionsSection() {
             <h3 className="text-2xl leading-[1.1] tracking-[-0.02em] text-[color:var(--ink)] md:text-3xl font-medium">
               {c.title}
             </h3>
-            <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)]">
-              {c.consequence}
-            </p>
+            <div className="relative">
+              <p className="font-serif text-base italic leading-snug text-[color:var(--ink-2)] transition-opacity duration-300 group-hover:opacity-0">
+                {c.consequence}
+              </p>
+              <p className="pointer-events-none absolute inset-0 font-serif text-base italic leading-snug text-[color:var(--ink-2)] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {c.hoverConsequence}
+              </p>
+            </div>
           </button>
         ))}
       </div>
