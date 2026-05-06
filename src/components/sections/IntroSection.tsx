@@ -46,8 +46,9 @@ export function IntroSection() {
           <div className="col-span-12 mt-12 grid grid-cols-12 gap-6">
             <div className="col-span-12 has-dropcap md:col-span-9">
               <p className="prose-body">
-                For most of the twentieth century, the technologies that
-                reshaped economies and won wars moved in one direction: funded
+                History shows that for most of the twentieth century, the
+                technologies that reshaped economies and won wars moved in one
+                direction: funded
                 by the state, made strategically usable by the military, then
                 released downstream into civilian life. Artificial intelligence
                 has reversed this pattern. The Pentagon now buys frontier

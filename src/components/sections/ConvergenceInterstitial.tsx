@@ -128,16 +128,21 @@ export function ConvergenceInterstitial() {
                     sits outside the state. Its early foundations were DARPA
                     funded, but transformers, scaling laws and Reinforcement
                     Learning from Human Feedback (RLHF) were built in
-                    commercial labs with private capital. The 2025 US contracts
-                    with top AI companies, the launch of GenAI.mil, and project
-                    Thunderforge all show how the Pentagon is procuring from
-                    commercial frontier AI rather than building it. China's
-                    military-civil fusion doctrine institutionalizes spin-on
-                    as a strategy. These examples show how the state is now
-                    structurally downstream of a GPT, it neither produced it
-                    nor can quickly replicate it, therefore investing in
-                    Ruttan's 20th century pipeline. Bremmer and Suleyman
-                    (2023) call this the AI Power Paradox.
+                    commercial labs with private capital.
+                  </p>
+                  <p className="mt-4">
+                    The 2025 US contracts with top AI companies, the launch
+                    of GenAI.mil, and project Thunderforge all show how the
+                    Pentagon is procuring from commercial frontier AI rather
+                    than building it. China's military-civil fusion doctrine
+                    institutionalizes spin-on as a strategy.
+                  </p>
+                  <p className="mt-4">
+                    These examples show how the state is now structurally
+                    downstream of a GPT, it neither produced it nor can
+                    quickly replicate it, therefore investing in Ruttan's
+                    20th century pipeline. Bremmer and Suleyman (2023) call
+                    this the AI Power Paradox.
                   </p>
                 </div>
                 <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-mute)]">
