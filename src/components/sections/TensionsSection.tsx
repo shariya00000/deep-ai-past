@@ -35,7 +35,7 @@ const CASES: Case[] = [
     title: "British & Dutch East India Companies",
     consequence: "The state creates a private actor and loses control of it.",
     hoverConsequence:
-      "Creating conditions for private actors to scale a strategically critical capability produces governance instruments that become inadequate once the private company outgrows them.",
+      "Governance tools built for small actors fail when the actor outgrows them.",
     image: case01Img,
     imageAlt: "19th-century painting of an East India Company ship at anchor.",
     sections: [
@@ -70,7 +70,7 @@ const CASES: Case[] = [
     title: "Krupp and the German military state",
     consequence: "Mutual capture without meaningful accountability.",
     hoverConsequence:
-      "Once mutual capture between a private firm and the state reaches sufficient depth, no governance mechanism operating within normal politics can restore accountability.",
+      "Mutual capture poses limited exit routes from within, only external shock breaks it.",
     image: case02Img,
     imageAlt: "Historical photograph of a Krupp armaments factory floor.",
     sections: [
@@ -100,7 +100,7 @@ const CASES: Case[] = [
     consequence:
       "The state tolerates a private monopoly until strategic dependency threatens security objectives.",
     hoverConsequence:
-      "The state tolerates and implicitly benefits from private concentration until its structural dependency is revealed, then faces a private actor with enough accumulated power to contest reassertion on its own terms.",
+      "The state benefits from private concentration until it becomes the dependent.",
     image: case03Img,
     imageAlt: "Period political cartoon depicting Standard Oil as an octopus.",
     sections: [
@@ -130,7 +130,7 @@ const CASES: Case[] = [
     consequence:
       "A private actor's commercial interests become the de facto driver of state grand strategy.",
     hoverConsequence:
-      "Private commercial logic can so thoroughly shape state strategic priorities that the question of policy direction no longer has a clear answer.",
+      "When private logic drives state strategy, the question of who governs has no clear answer.",
     image: case04Img,
     imageAlt: "Logos of the Big Three Zaibatsu: Mitsubishi, Mitsui, Sumitomo.",
     sections: [
@@ -160,7 +160,7 @@ const CASES: Case[] = [
     consequence:
       "State leverage persists where private actors depend on state contracts — and breaks down where they don't.",
     hoverConsequence:
-      "With AI, the economic structure of the industry makes private accumulation of power not an accident of history but a default condition.",
+      "With AI, private accumulation of power is not a historical accident but a structural default.",
     image: case05Img,
     imageAlt: "Lockheed Martin B-1 bomber surrounded by missile loadouts.",
     sections: [
