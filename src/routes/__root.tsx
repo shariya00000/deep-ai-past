@@ -29,13 +29,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Geopolitics of AI" },
+      { title: "AI and National Security Tensions" },
       {
         name: "description",
         content:
           "An essay on artificial intelligence as a general purpose technology and the geopolitics of state–private power.",
       },
-      { property: "og:title", content: "Geopolitics of AI" },
+      { property: "og:title", content: "AI and National Security Tensions" },
       {
         property: "og:description",
         content:
@@ -43,6 +43,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "AI and National Security Tensions" },
+      { name: "description", content: "AI History Nexus explores the historical evolution of General Purpose Technologies (GPTs) and their impact on state-private power dynamics." },
+      { property: "og:description", content: "AI History Nexus explores the historical evolution of General Purpose Technologies (GPTs) and their impact on state-private power dynamics." },
+      { name: "twitter:description", content: "AI History Nexus explores the historical evolution of General Purpose Technologies (GPTs) and their impact on state-private power dynamics." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2c09b37e-afd5-4ad2-bd4a-ddfeefb0be68/id-preview-b9b35ef6--a9b60f7e-5ff2-4386-8e09-8fdaee6238ed.lovable.app-1778151474917.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2c09b37e-afd5-4ad2-bd4a-ddfeefb0be68/id-preview-b9b35ef6--a9b60f7e-5ff2-4386-8e09-8fdaee6238ed.lovable.app-1778151474917.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
